@@ -1,0 +1,202 @@
+/* Custom admin styles for Curator Modal - AGGRESSIVE FIX */
+
+/* Force the main container to be horizontal (split view) */
+div.curator-panel > div[class*="flex-1"] {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    height: calc(100vh - 80px) !important;
+}
+
+/* Left side: Gallery images */
+.curator-panel-gallery {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    padding: 1.5rem !important;
+    background: #fff !important;
+}
+
+/* Right side: Upload Section (Sidebar) */
+.curator-panel-sidebar {
+    width: 450px !important;
+    min-width: 450px !important;
+    max-width: 450px !important;
+    border-left: 1px solid #e0e0e0 !important;
+    background-color: #f7f7f7 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: 0 !important;
+}
+
+/* Ensure the library images are in a nice grid */
+.curator-picker-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+    gap: 15px !important;
+    padding-bottom: 50px !important; /* Leave space for Load More if any */
+}
+
+.curator-picker-grid li img {
+    width: 130px !important;
+    height: 130px !important;
+    object-fit: cover !important;
+    border-radius: 6px !important;
+}
+
+/* Fix "Add Files" title and dropzone in the sidebar */
+.curator-panel-sidebar h4 {
+    margin-top: 1rem !important;
+    padding-left: 1rem !important;
+    color: #333 !important;
+}
+
+.curator-panel-sidebar .flex-1 {
+    padding: 1rem !important;
+}
+
+/* Dark mode support */
+.dark div.curator-panel > div[class*="flex-1"] {
+    background: #000 !important;
+}
+.dark .curator-panel-sidebar {
+    background-color: #1a1a1a !important;
+    border-color: #333 !important;
+}
+.dark .curator-panel-gallery {
+    background: #000 !important;
+}
+
+/* FORCE MEDIA ACTIONS VISIBILITY */
+.fi-ta-actions {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-top: 0.5rem !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+}
+
+.fi-ta-content-grid-item > div {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1rem !important;
+}
+
+.fi-ta-content-grid-item .fi-ta-actions {
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 0.75rem !important;
+}
+
+/* Reduce login page logo height and overall height */
+.fi-simple-main {
+    padding-top: 0.5rem !important;
+}
+
+.fi-simple-header img {
+    max-height: 140px !important;
+    width: auto !important;
+    margin-bottom: 0 !important;
+}
+
+.fi-simple-header {
+    margin-bottom: 0.5rem !important;
+}
+
+.fi-simple-card {
+    margin-top: 0 !important;
+}
+
+/* Hide language switcher in admin panel */
+.fi-user-menu ~ div > div > button[class*="filament-language-switch"] {
+    display: none !important;
+}
+
+/* General selector for the language switcher if the above is too specific */
+[class*="filament-language-switch"] {
+    display: none !important;
+}
+
+/* Fix Media Resource grid card layout and actions visibility on all rows */
+.fi-ta-record:has(.curator-grid-column) {
+    display: block !important;
+    padding: 0 !important;
+    height: auto !important;
+}
+.fi-ta-record:has(.curator-grid-column) .fi-ta-record-checkbox {
+    position: absolute !important;
+    top: 0.5rem !important;
+    left: 0.5rem !important;
+    z-index: 10 !important;
+}
+.fi-ta-record:has(.curator-grid-column) .fi-ta-record-content-ctn {
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    gap: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+}
+.fi-ta-record:has(.curator-grid-column) .fi-ta-record-content-ctn > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    height: auto !important;
+}
+.fi-ta-record:has(.curator-grid-column) .fi-ta-record-content {
+    height: 9.5rem !important;
+    width: 100% !important;
+    padding: 0 !important;
+    aspect-ratio: 16 / 9 !important;
+    display: block !important;
+}
+.curator-grid-column {
+    position: relative !important;
+    height: 100% !important;
+    width: 100% !important;
+    display: block !important;
+}
+.fi-ta-record:has(.curator-grid-column) .fi-ta-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    padding: 0.75rem !important;
+    position: relative !important;
+    background-color: #fff !important;
+    z-index: 5 !important;
+}
+
+/* Photo Gallery selected images: show 3 images per row in the form */
+.curator-media-picker > ul:not(.divide-y) {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+    align-items: start !important;
+}
+
+.curator-media-picker > ul:not(.divide-y) > li {
+    width: 100% !important;
+}
+
+.curator-media-picker > ul:not(.divide-y) > li > div {
+    height: 16rem !important;
+}
+
+.curator-media-picker > ul:not(.divide-y) img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+@media (max-width: 1024px) {
+    .curator-media-picker > ul:not(.divide-y) {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .curator-media-picker > ul:not(.divide-y) {
+        grid-template-columns: 1fr !important;
+    }
+}

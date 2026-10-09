@@ -1,0 +1,212 @@
+.fi-resource-media .fi-ta-content.fi-ta-content-grid {
+    align-items: stretch;
+}
+
+.fi-resource-media .fi-ta-content.fi-ta-content-grid .fi-ta-record:has(.curator-grid-column) {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+.fi-resource-media .fi-ta-content.fi-ta-content-grid .fi-ta-record:has(.curator-grid-column) .fi-ta-record-content-ctn {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+.fi-resource-media .fi-ta-content.fi-ta-content-grid .fi-ta-record:has(.curator-grid-column) .fi-ta-record-content-ctn > div:first-child {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+.fi-resource-media .fi-ta-content.fi-ta-content-grid .fi-ta-record:has(.curator-grid-column) .fi-ta-record-content {
+    display: block !important;
+    flex: 0 0 auto !important;
+    height: 9.75rem !important;
+    min-height: 9.75rem !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: relative !important;
+}
+
+.fi-resource-media .fi-ta-content.fi-ta-content-grid .fi-ta-record:has(.curator-grid-column) .fi-ta-actions {
+    align-items: center !important;
+    background: #fff !important;
+    border-top: 1px solid rgba(0, 0, 0, .08) !important;
+    display: flex !important;
+    gap: .5rem !important;
+    justify-content: flex-start !important;
+    min-height: 2.5rem !important;
+    opacity: 1 !important;
+    padding: .5rem .75rem !important;
+    position: relative !important;
+    visibility: visible !important;
+    z-index: 20 !important;
+}
+
+.dark .fi-resource-media .fi-ta-content.fi-ta-content-grid .fi-ta-record:has(.curator-grid-column) .fi-ta-actions {
+    background: rgb(24, 24, 27) !important;
+    border-top-color: rgba(255, 255, 255, .1) !important;
+}
+
+/* Curator picker modal: media library left, upload/browser panel right */
+.curator-panel {
+    height: 100% !important;
+    max-height: 100% !important;
+}
+
+.curator-panel > .flex-1.relative {
+    display: flex !important;
+    flex-direction: row !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+}
+
+.curator-panel .curator-panel-gallery {
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    overflow-y: auto !important;
+    padding: 1rem !important;
+}
+
+.curator-panel .curator-panel-sidebar {
+    border-left: 1px solid rgba(0, 0, 0, .12) !important;
+    box-shadow: none !important;
+    flex: 0 0 420px !important;
+    width: 420px !important;
+    min-width: 420px !important;
+    max-width: 420px !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: rgba(243, 244, 246, 0.8) !important;
+}
+
+.dark .curator-panel .curator-panel-sidebar {
+    background-color: rgba(17, 24, 39, 0.6) !important;
+}
+
+/* Curator sidebar layout and scroll area */
+.curator-panel .curator-panel-sidebar {
+    border-left: 1px solid rgba(0, 0, 0, .12) !important;
+    box-shadow: none !important;
+    flex: 0 0 440px !important;
+    width: 440px !important;
+    min-width: 440px !important;
+    max-width: 440px !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.curator-panel .curator-uploader-scroll-container {
+    flex: 1 1 0% !important;
+    height: 100% !important;
+    max-height: calc(100vh - 180px) !important;
+    min-height: 0 !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    padding: 1rem !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/* FilePond root & drop area */
+.curator-panel .curator-panel-sidebar .filepond--root {
+    min-height: 160px !important;
+    overflow: visible !important;
+}
+
+.curator-panel .curator-panel-sidebar .filepond--drop-label {
+    min-height: 120px !important;
+}
+
+.curator-panel .curator-panel-sidebar .filepond--list-scroller {
+    overflow: visible !important;
+}
+
+/* Keep header and action buttons accessible when scrolling */
+.curator-panel .curator-panel-sidebar h4 {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    background-color: rgba(243, 244, 246, 0.95) !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+.dark .curator-panel .curator-panel-sidebar h4 {
+    background-color: rgba(17, 24, 39, 0.95) !important;
+}
+
+.curator-panel .curator-panel-sidebar .flex.items-center.px-4.pb-2 {
+    position: sticky !important;
+    top: 2.5rem !important;
+    z-index: 10 !important;
+    background-color: rgba(243, 244, 246, 0.95) !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+.dark .curator-panel .curator-panel-sidebar .flex.items-center.px-4.pb-2 {
+    background-color: rgba(17, 24, 39, 0.95) !important;
+}
+
+/* Always visible, beautiful scrollbars on the sidebar and upload list */
+.curator-panel .curator-panel-sidebar,
+.curator-panel .curator-panel-sidebar * {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(107, 114, 128, 0.5) rgba(0, 0, 0, 0.05) !important;
+}
+
+.curator-panel .curator-panel-sidebar::-webkit-scrollbar,
+.curator-panel .curator-panel-sidebar *::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+
+.curator-panel .curator-panel-sidebar::-webkit-scrollbar-track,
+.curator-panel .curator-panel-sidebar *::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-radius: 4px !important;
+}
+
+.curator-panel .curator-panel-sidebar::-webkit-scrollbar-thumb,
+.curator-panel .curator-panel-sidebar *::-webkit-scrollbar-thumb {
+    background: rgba(107, 114, 128, 0.5) !important;
+    border-radius: 4px !important;
+}
+
+.curator-panel .curator-panel-sidebar::-webkit-scrollbar-thumb:hover,
+.curator-panel .curator-panel-sidebar *::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 114, 128, 0.8) !important;
+}
+
+@media (max-width: 767px) {
+    .curator-panel > .flex-1.relative {
+        flex-direction: column !important;
+    }
+
+    .curator-panel .curator-panel-sidebar {
+        border-left: 0 !important;
+        border-top: 1px solid rgba(0, 0, 0, .12) !important;
+        flex: 0 0 auto !important;
+        height: auto !important;
+        max-height: 55vh !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+}
