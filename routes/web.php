@@ -24,6 +24,7 @@ Route::post('registration', [RegistrationController::class, 'store'])->name('fro
 
 include_once(FRONTEND_ROUTES_PATH . 'subroute.php');
 
+Route::get('news-events', [HomeController::class, 'newsEvents'])->name('frontend.pages.newsEvents');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('frontend.pages.gallery');
 // Route::get('/gallery/{year}', [HomeController::class, 'showYearGallery'])->name('gallery.year');
 Route::get('/gallery/folder/{slug}', [HomeController::class, 'showGallery'])->name('gallery.show');

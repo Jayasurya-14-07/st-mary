@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Head } from '@inertiajs/react';
+import panel from '../Constants/panel';
 import NoticeBar from '../Components/NoticeBar';
 import Navbar from '../Components/Navbar';
 import HeroSlider from '../Components/HeroSlider';
@@ -15,8 +16,7 @@ import Footer from '../Components/Footer';
 import FloatingSocial from '../Components/FloatingSocial';
 import ImageModal from '../Components/ImageModal';
 
-export default function Home({ sliders = null, sliderImages = [], flashNews = [], galleryImages = [], videos = [], aboutus = null, facilites = [], testimoinals = [] }) {
-
+export default function Home({ sliders = null, sliderImages = [], notices = [], flashNews = [], newsEvents = [], galleryImages = [], videos = [], aboutus = null, facilites = [], testimoinals = [], siteTitle = null }) {
     useEffect(() => {
         // Reveal-on-scroll intersection observer
         const observer = new IntersectionObserver((entries) => {
@@ -53,9 +53,9 @@ export default function Home({ sliders = null, sliderImages = [], flashNews = []
 
     return (
         <>
-            <Head title="St. Mary's Convent School, Chhallan, Ramkot" />
+            <Head title={siteTitle || panel.site_title} />
 
-            <NoticeBar flashNews={flashNews} />
+            <NoticeBar notices={notices || flashNews} />
             <Navbar />
             <HeroSlider sliders={sliders} sliderImages={sliderImages} />
             <AboutSection aboutus={aboutus} />
@@ -64,7 +64,7 @@ export default function Home({ sliders = null, sliderImages = [], flashNews = []
             <VisionMissionSection />
             <ClubsSection />
             <PhotoGallerySection galleryImages={galleryImages} />
-            <NewsEventsSection />
+            <NewsEventsSection newsEvents={newsEvents} />
             <VideoGallerySection videos={videos} />
             <Footer />
             <FloatingSocial />

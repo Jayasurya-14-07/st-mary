@@ -22,6 +22,10 @@ class FlashNewsResource extends Resource
 {
     protected static ?string $model = FlashNews::class;
 
+    protected static ?string $navigationLabel = 'Notices';
+    protected static ?string $modelLabel = 'Notice';
+    protected static ?string $pluralModelLabel = 'Notices';
+
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-megaphone';
     protected static string|\UnitEnum|null $navigationGroup = 'CMS';
 

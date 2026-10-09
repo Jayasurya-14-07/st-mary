@@ -35,8 +35,8 @@ export default function Post({ post = null, flashNews = [] }) {
             {/* Post Content */}
             <section className="history-content py-5 subpage bg-white">
                 <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-10">
+                    <div className="row">
+                        <div className="col-12">
                             <h2 className="display-6 fw-bold text-navy mb-3">{post.title}</h2>
 
                             {formattedDate && (

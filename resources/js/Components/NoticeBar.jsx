@@ -1,4 +1,6 @@
-export default function NoticeBar({ flashNews = [] }) {
+export default function NoticeBar({ notices = [], flashNews = [] }) {
+    const noticeItems = (notices && notices.length > 0) ? notices : flashNews;
+
     return (
         <>
             {/* Announcement Bar */}
@@ -12,8 +14,8 @@ export default function NoticeBar({ flashNews = [] }) {
                         <span className="notice-label"><i className="fa-solid fa-bell me-1"></i> Notices</span>
                         <div className="notice-scroll w-100 ms-3">
                             <span>
-                                {flashNews && flashNews.length > 0
-                                    ? flashNews.map((n, i) => <span key={i}>{n.title}&nbsp; • &nbsp;</span>)
+                                {noticeItems && noticeItems.length > 0
+                                    ? noticeItems.map((n, i) => <span key={i}>{n.title}&nbsp; • &nbsp;</span>)
                                     : 'Admissions registration begins in January \u00a0 • \u00a0 Entrance examinations run from March to the beginning of April \u00a0 • \u00a0 Fees are paid quarterly through the Parent Portal'
                                 }
                             </span>
@@ -30,7 +32,12 @@ export default function NoticeBar({ flashNews = [] }) {
                 <div className="container d-flex align-items-center gap-2">
                     <span className="notice-label px-2"><i className="fa-solid fa-bell"></i></span>
                     <div className="notice-scroll flex-grow-1">
-                        <span>Admissions registration begins in January &nbsp; • &nbsp; Entrance examinations run from March</span>
+                        <span>
+                            {noticeItems && noticeItems.length > 0
+                                ? noticeItems.map((n, i) => <span key={i}>{n.title}&nbsp; • &nbsp;</span>)
+                                : 'Admissions registration begins in January \u00a0 • \u00a0 Entrance examinations run from March to the beginning of April'
+                            }
+                        </span>
                     </div>
                 </div>
             </div>

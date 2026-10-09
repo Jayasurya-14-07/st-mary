@@ -28,6 +28,7 @@ class Posts extends Model
         'excerpt',
         'feature_image',
         'author',
+        'tag_id',
         'content',
         'status',
         'order_by',
@@ -51,6 +52,11 @@ class Posts extends Model
     public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'post_category', 'post_id', 'category_id');
+    }
+
+    public function tag(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Tag::class, 'tag_id');
     }
 
     public function featuredImage(): \Illuminate\Database\Eloquent\Relations\BelongsTo

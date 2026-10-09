@@ -3,17 +3,16 @@
 namespace App\Filament\Resources\MenusResource\Pages;
 
 use App\Filament\Resources\MenusResource;
-use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use SolutionForest\FilamentTree\Resources\Pages\TreePage;
 
-class ListMenuses extends ListRecords
+class ListMenuses extends TreePage
 {
     protected static string $resource = MenusResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            $this->getCreateAction(),
         ];
     }
 }

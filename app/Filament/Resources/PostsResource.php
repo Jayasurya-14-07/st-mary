@@ -76,6 +76,14 @@ class PostsResource extends Resource
                     ->multiple()
                     ->columns(2),
 
+                Forms\Components\Select::make('tag_id')
+                    ->label('Tag')
+                    ->relationship('tag', 'name')
+                    ->nullable()
+                    ->searchable()
+                    ->preload()
+                    ->helperText('Optional tag for News & Events posts'),
+
                 Forms\Components\TextInput::make('author')
                     ->label('Subtitle')
                     ->maxLength(255)

@@ -31,7 +31,12 @@ class Common
 
     public static function getMenus()
     {
-        $menus = Menus::where('type', 'main_menu')
+        $menus = Menus::where(function($q) {
+                $q->whereNull('parent_id')
+                  ->orWhere('parent_id', 0)
+                  ->orWhere('parent_id', -1)
+                  ->orWhere('type', 'main_menu');
+            })
             ->where('status', 1)
             ->orderByRaw('order_by IS NULL')
             ->orderBy('order_by', 'asc')
@@ -43,6 +48,26 @@ class Common
     }
 
 
+
+    public static function formatMenusForInertia($menus)
+    {
+        if (!$menus) {
+            return [];
+        }
+
+        return $menus->map(function ($menu) {
+            return [
+                'id' => $menu->id,
+                'name' => $menu->name,
+                'is_url' => (bool) $menu->is_url,
+                'url' => self::getMenuUrl($menu),
+                'target' => ($menu->is_url && $menu->target) ? $menu->target : '_self',
+                'all_children' => ($menu->allChildren && $menu->allChildren->isNotEmpty())
+                    ? self::formatMenusForInertia($menu->allChildren)
+                    : [],
+            ];
+        })->toArray();
+    }
 
     public static function getImage($image)
     {

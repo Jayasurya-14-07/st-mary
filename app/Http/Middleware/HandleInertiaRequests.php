@@ -35,9 +35,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $dbMenus = \App\Helpers\Common::getMenus();
+        $menus = \App\Helpers\Common::formatMenusForInertia($dbMenus);
+        $notices = \App\Models\FlashNews::active()->latest('publish_date')->orderBy('id', 'desc')->get();
+
         return [
             ...parent::share($request),
-            //
+            'siteTitle'     => __('panel.site_title'),
+            'siteTitleFull' => __('panel.site_title_full'),
+            'menus'         => $menus,
+            'notices'       => $notices,
+            'flashNews'     => $notices,
         ];
     }
 }

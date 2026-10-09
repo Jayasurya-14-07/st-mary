@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -14,8 +15,14 @@ class PostController extends Controller
         // Get the last segment of the URL
         $lastSegment = end($segments);
 
-        $post = Posts::where('slug', $lastSegment)->first();
+        $post = Posts::with('categories')->where('slug', $lastSegment)->first();
 
-        return view('frontend.post', compact('post'));
+        if (!$post) {
+            abort(404);
+        }
+
+        return Inertia::render('Post', [
+            'post' => $post,
+        ]);
     }
 }

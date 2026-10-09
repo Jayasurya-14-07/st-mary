@@ -27,8 +27,8 @@ export default function Page({ page = null, breadcrumbs = [], flashNews = [] }) 
             {/* Subpage Main Content from Filament DB Blocks */}
             <section className="bg-white subpage py-5">
                 <div className="container py-3">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-11">
+                    <div className="row">
+                        <div className="col-12">
                             {page.content && Array.isArray(page.content) ? (
                                 <BlockRenderer blocks={page.content} />
                             ) : page.content ? (

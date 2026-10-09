@@ -4,10 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use SolutionForest\FilamentTree\Concern\ModelTree;
 
 class Menus extends Model
 {
     use HasFactory;
+    use ModelTree;
+
+    public function determineOrderColumnName(): string
+    {
+        return 'order_by';
+    }
+
+    public function determineParentColumnName(): string
+    {
+        return 'parent_id';
+    }
+
+    public function determineTitleColumnName(): string
+    {
+        return 'name';
+    }
+
+    public static function defaultParentKey()
+    {
+        return null;
+    }
 
     public const TYPE_LABELS = [
         'main_menu' => 'Main Menu',

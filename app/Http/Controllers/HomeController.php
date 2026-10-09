@@ -40,8 +40,14 @@ class HomeController extends Controller
 
         $totalGalleries = PhotoGallery::count();
 
-       
-        $aboutus=Pages::where('slug','about-us')->where('status',1)->first();
+        $aboutus = Pages::where('slug', 'about-us')->where('status', 1)->first();
+
+        if ($aboutus) {
+            if (!empty($aboutus->excerpt)) {
+                $aboutus->excerpt = strip_tags($aboutus->excerpt);
+            }
+            $aboutus->link_url = $aboutus->slug_url ?? url($aboutus->slug);
+        }
 
         $flashNews = FlashNews::active()->latest('publish_date')->orderBy('id', 'desc')->get();
 
@@ -132,6 +138,40 @@ class HomeController extends Controller
         // Merge DB videos at the beginning
         $videos = array_merge($formattedDbVideos, $videos);
 
+        $newsCategory = Category::where('slug', 'news-events')->first();
+        $newsEvents = collect();
+
+        if ($newsCategory) {
+            $newsEvents = $newsCategory->posts()
+                ->with(['tag', 'categories'])
+                ->where('status', 1)
+                ->latest('publish_date')
+                ->orderBy('id', 'desc')
+                ->get();
+        }
+
+        if ($newsEvents->isEmpty()) {
+            $newsEvents = Posts::with(['tag', 'categories'])
+                ->where('status', 1)
+                ->latest('publish_date')
+                ->orderBy('id', 'desc')
+                ->take(12)
+                ->get();
+        }
+
+        $formattedNewsEvents = $newsEvents->map(function ($post) {
+            return [
+                'id'            => $post->id,
+                'title'         => $post->title,
+                'slug'          => $post->slug,
+                'excerpt'       => !empty($post->excerpt) ? strip_tags($post->excerpt) : '',
+                'feature_image' => !empty($post->feature_image) ? (str_starts_with($post->feature_image, 'http') ? $post->feature_image : asset('storage/' . $post->feature_image)) : null,
+                'tag_name'      => $post->tag ? $post->tag->name : ($post->category_names ?: 'NEWS & EVENTS'),
+                'publish_date'  => $post->publish_date ? \Carbon\Carbon::parse($post->publish_date)->format('d M') : \Carbon\Carbon::parse($post->created_at)->format('d M'),
+                'full_date'     => $post->publish_date ? \Carbon\Carbon::parse($post->publish_date)->format('d F Y') : \Carbon\Carbon::parse($post->created_at)->format('d F Y'),
+            ];
+        });
+
         return Inertia::render('Home', [
             'aboutus'        => $aboutus,
             'testimoinals'   => $testimoinals,
@@ -142,7 +182,9 @@ class HomeController extends Controller
             'sliders'        => $sliders,
             'sliderImages'   => $sliderImages,
             'videos'         => $videos,
+            'notices'        => $flashNews,
             'flashNews'      => $flashNews,
+            'newsEvents'     => $formattedNewsEvents,
         ]);
     }
 
@@ -197,7 +239,9 @@ class HomeController extends Controller
             ->orderBy('publish_date', 'desc')
             ->get();
 
-        return view('frontend.pages.gallery', compact('galleries'));
+        return Inertia::render('Gallery', [
+            'galleries' => $galleries,
+        ]);
     }
 
 
@@ -314,11 +358,47 @@ class HomeController extends Controller
         return view('frontend.pages.allfacilities', compact('facilities'));
     }
 
+    public function newsEvents()
+    {
+        $newsCategory = Category::where('slug', 'news-events')->first();
+        $newsEvents = collect();
 
+        if ($newsCategory) {
+            $newsEvents = $newsCategory->posts()
+                ->with(['tag', 'categories'])
+                ->where('status', 1)
+                ->latest('publish_date')
+                ->orderBy('id', 'desc')
+                ->get();
+        }
 
+        if ($newsEvents->isEmpty()) {
+            $newsEvents = Posts::with(['tag', 'categories'])
+                ->where('status', 1)
+                ->latest('publish_date')
+                ->orderBy('id', 'desc')
+                ->get();
+        }
 
+        $tags = \App\Models\Tag::orderBy('name', 'asc')->get();
 
+        $formattedNewsEvents = $newsEvents->map(function ($post) {
+            return [
+                'id'            => $post->id,
+                'title'         => $post->title,
+                'slug'          => $post->slug,
+                'excerpt'       => !empty($post->excerpt) ? strip_tags($post->excerpt) : '',
+                'feature_image' => !empty($post->feature_image) ? (str_starts_with($post->feature_image, 'http') ? $post->feature_image : asset('storage/' . $post->feature_image)) : '/images/news/news1.jpg',
+                'tag_name'      => $post->tag ? $post->tag->name : ($post->category_names ?: 'News & Events'),
+                'tag_id'        => $post->tag_id,
+                'publish_date'  => $post->publish_date ? \Carbon\Carbon::parse($post->publish_date)->format('d M') : \Carbon\Carbon::parse($post->created_at)->format('d M'),
+                'full_date'     => $post->publish_date ? \Carbon\Carbon::parse($post->publish_date)->format('d F Y') : \Carbon\Carbon::parse($post->created_at)->format('d F Y'),
+            ];
+        });
 
-
-
+        return Inertia::render('NewsEvents', [
+            'newsEvents' => $formattedNewsEvents,
+            'tags'       => $tags,
+        ]);
+    }
 }

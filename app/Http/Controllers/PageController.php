@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Menus;
 use App\Models\Pages;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PageController extends Controller
 {
@@ -55,18 +56,9 @@ class PageController extends Controller
             'url' => $currentPath ? url($currentPath) : url($page->slug),
         ];
 
-        // Randomize the page banner
-        $bannerDirectory = public_path('frontend/assets/images/page-banner');
-        $randomBanner = '/frontend/assets/images/slider-1.jpg'; // fallback default
-        
-        if (\Illuminate\Support\Facades\File::exists($bannerDirectory)) {
-            $files = \Illuminate\Support\Facades\File::files($bannerDirectory);
-            if (!empty($files)) {
-                $randomFile = $files[array_rand($files)];
-                $randomBanner = '/frontend/assets/images/page-banner/' . $randomFile->getFilename();
-            }
-        }
-
-        return view('frontend.page', compact('page', 'breadcrumbs', 'randomBanner'));
+        return Inertia::render('Page', [
+            'page' => $page,
+            'breadcrumbs' => $breadcrumbs,
+        ]);
     }
 }
