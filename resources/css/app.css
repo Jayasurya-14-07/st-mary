@@ -1935,3 +1935,114 @@ footer h5 {
     line-height: 1.5;
     margin-bottom: 0;
 }
+
+/* ---------- Subpage Banner & Breadcrumbs System ---------- */
+.page-banner {
+    position: relative;
+    background: linear-gradient(135deg, var(--navy, #0b2038) 0%, #102b46 55%, #591624 100%);
+    padding: 85px 0 60px;
+    color: #ffffff;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.page-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(199, 154, 72, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 90% 80%, rgba(141, 38, 56, 0.28) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.page-banner-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: radial-gradient(#ffffff 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+.page-banner-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.3rem, 4.5vw, 3.8rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-banner-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    max-width: 660px;
+    margin: 0 auto 24px;
+    line-height: 1.65;
+    font-weight: 400;
+}
+
+.breadcrumb-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.breadcrumb-custom {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50px;
+    margin: 0;
+    list-style: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.breadcrumb-custom .breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.breadcrumb-custom .breadcrumb-item a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.breadcrumb-custom .breadcrumb-item a:hover {
+    color: var(--gold-light, #f7d785);
+}
+
+.breadcrumb-custom .breadcrumb-item i {
+    font-size: 0.8rem;
+}
+
+.breadcrumb-custom .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0;
+}
+
+.breadcrumb-custom .breadcrumb-item + .breadcrumb-item::before {
+    content: "\f105";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin: 0 12px;
+    color: var(--gold-light, #f7d785);
+    font-size: 0.78rem;
+    opacity: 0.85;
+}
+
+.breadcrumb-custom .breadcrumb-item.active {
+    color: var(--gold-light, #f7d785);
+    font-weight: 700;
+}

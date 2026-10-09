@@ -1935,3 +1935,736 @@ footer h5 {
     line-height: 1.5;
     margin-bottom: 0;
 }
+
+/* ==========================================================================
+   Consistently Maintained Subpage Banner & Breadcrumbs System
+   ========================================================================== */
+.page-banner {
+    position: relative;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 55%, var(--wine-dark) 100%);
+    padding: 85px 0 60px;
+    color: #ffffff;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.page-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(199, 154, 72, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 90% 80%, rgba(141, 38, 56, 0.28) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.page-banner-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: radial-gradient(#ffffff 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+.page-banner-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.3rem, 4.5vw, 3.8rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-banner-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    max-width: 660px;
+    margin: 0 auto 24px;
+    line-height: 1.65;
+    font-weight: 400;
+}
+
+/* Glassmorphism Breadcrumb Navigation */
+.breadcrumb-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.breadcrumb-custom {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50px;
+    margin: 0;
+    list-style: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.breadcrumb-custom .breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.breadcrumb-custom .breadcrumb-item a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.breadcrumb-custom .breadcrumb-item a:hover {
+    color: var(--gold-light);
+}
+
+.breadcrumb-custom .breadcrumb-item i {
+    font-size: 0.8rem;
+}
+
+.breadcrumb-custom .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0;
+}
+
+.breadcrumb-custom .breadcrumb-item + .breadcrumb-item::before {
+    content: "\f105";
+    font-family: "Font Awesome 6 Free", "Font Awesome 7 Free";
+    font-weight: 900;
+    margin: 0 12px;
+    color: var(--gold-light);
+    font-size: 0.78rem;
+    opacity: 0.85;
+}
+
+.breadcrumb-custom .breadcrumb-item.active {
+    color: var(--gold-light);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   About Us Page Components
+   ========================================================================== */
+.about-hero-card {
+    background: #ffffff;
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    position: relative;
+}
+
+.about-badge-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-2));
+    color: var(--gold-light);
+    display: grid;
+    place-items: center;
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 20px rgba(16, 43, 70, 0.2);
+}
+
+.value-card-v2 {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 32px 28px;
+    border: 1px solid var(--line);
+    height: 100%;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.value-card-v2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+    opacity: 0.4;
+    transition: all 0.35s ease;
+}
+
+.value-card-v2:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(16, 43, 70, 0.1);
+    border-color: rgba(199, 154, 72, 0.3);
+}
+
+.value-card-v2:hover::before {
+    opacity: 1;
+    width: 6px;
+}
+
+.value-icon-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(141, 38, 56, 0.08);
+    color: var(--wine);
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.principal-message-box {
+    background: linear-gradient(145deg, #ffffff, var(--cream));
+    border-radius: 24px;
+    border: 1px solid rgba(199, 154, 72, 0.25);
+    padding: 40px;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.staff-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    transition: all 0.35s ease;
+    text-align: center;
+}
+
+.staff-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(16, 43, 70, 0.12);
+}
+
+.staff-img-wrapper {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    background: #f0f4f8;
+}
+
+.staff-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.staff-card:hover .staff-img-wrapper img {
+    transform: scale(1.06);
+}
+
+.staff-info {
+    padding: 24px 20px;
+}
+
+.staff-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+}
+
+.staff-role {
+    font-size: 0.82rem;
+    color: var(--wine);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+}
+
+.staff-qual {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* ==========================================================================
+   News & Events Page Components
+   ========================================================================== */
+.news-toolbar {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px 28px;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    margin-bottom: 40px;
+}
+
+.search-box-custom {
+    position: relative;
+    width: 100%;
+}
+
+.search-box-custom input {
+    width: 100%;
+    padding: 12px 20px 12px 46px;
+    border-radius: 50px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    font-size: 0.92rem;
+    transition: all 0.3s ease;
+}
+
+.search-box-custom input:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 4px rgba(16, 43, 70, 0.08);
+    background: #ffffff;
+}
+
+.search-box-custom i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.news-card-v2 {
+    background: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.04);
+    transition: all 0.35s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card-v2:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 42px rgba(16, 43, 70, 0.12);
+}
+
+.news-thumb-wrapper {
+    position: relative;
+    height: 230px;
+    overflow: hidden;
+    background: var(--navy-2);
+}
+
+.news-thumb-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.news-card-v2:hover .news-thumb-wrapper img {
+    transform: scale(1.08);
+}
+
+.news-category-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+    background: rgba(16, 43, 70, 0.88);
+    backdrop-filter: blur(8px);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.news-date-chip {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 14px;
+    background: var(--wine);
+    color: #ffffff;
+    font-size: 0.76rem;
+    font-weight: 700;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(141, 38, 56, 0.3);
+}
+
+.news-card-body {
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.news-title-v2 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.18rem;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 12px;
+    transition: color 0.25s ease;
+}
+
+.news-card-v2:hover .news-title-v2 {
+    color: var(--wine);
+}
+
+.news-excerpt {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.news-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+.news-link-btn {
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.88rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+}
+
+.news-card-v2:hover .news-link-btn {
+    color: var(--wine);
+}
+
+.news-card-v2:hover .news-link-btn i {
+    transform: translateX(4px);
+}
+
+/* Featured Event Banner Card */
+.featured-event-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    border-radius: 28px;
+    overflow: hidden;
+    color: #ffffff;
+    box-shadow: var(--shadow);
+    margin-bottom: 50px;
+}
+
+.featured-event-content {
+    padding: 45px;
+}
+
+.event-countdown-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(199, 154, 72, 0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* Custom Pagination */
+.pagination-custom {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 50px;
+}
+
+.pagination-custom .page-link {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    background: #ffffff;
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.92rem;
+    transition: all 0.25s ease;
+}
+
+.pagination-custom .page-link:hover,
+.pagination-custom .page-item.active .page-link {
+    background: var(--navy);
+    color: #ffffff;
+    border-color: var(--navy);
+    box-shadow: 0 6px 16px rgba(16, 43, 70, 0.2);
+}
+
+/* ==========================================================================
+   Contact Us Page Components
+   ========================================================================== */
+.contact-card-v2 {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px 26px;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    height: 100%;
+    transition: all 0.35s ease;
+}
+
+.contact-card-v2:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(16, 43, 70, 0.1);
+}
+
+.contact-icon-box {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: rgba(141, 38, 56, 0.08);
+    color: var(--wine);
+    display: grid;
+    place-items: center;
+    font-size: 1.35rem;
+    margin-bottom: 20px;
+}
+
+.contact-card-v2 h5 {
+    color: var(--navy);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contact-card-v2 p, .contact-card-v2 a {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.contact-form-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 44px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.contact-form-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 40px;
+    right: 40px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--wine));
+    border-radius: 4px 4px 0 0;
+}
+
+.form-control-custom {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    font-size: 0.95rem;
+    color: var(--ink);
+    transition: all 0.3s ease;
+}
+
+.form-control-custom:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 4px rgba(16, 43, 70, 0.08);
+    background: #ffffff;
+}
+
+.form-label-custom {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.map-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    height: 440px;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ==========================================================================
+   Gallery Page Components
+   ========================================================================== */
+.gallery-card-v2 {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    background: var(--navy);
+    cursor: pointer;
+    height: 280px;
+}
+
+.gallery-card-v2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.gallery-card-v2:hover img {
+    transform: scale(1.08);
+    opacity: 0.85;
+}
+
+.gallery-overlay-v2 {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(16, 43, 70, 0.9) 0%, rgba(16, 43, 70, 0.2) 60%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+}
+
+.gallery-card-v2:hover .gallery-overlay-v2 {
+    opacity: 1;
+}
+
+.gallery-zoom-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--navy);
+    display: grid;
+    place-items: center;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(15px);
+    transition: transform 0.35s ease;
+}
+
+.gallery-card-v2:hover .gallery-zoom-icon {
+    transform: translateY(0);
+}
+
+.gallery-title-v2 {
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Comprehensive Mobile Responsiveness Fixes
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    .page-banner {
+        padding: 65px 0 50px;
+    }
+
+    .page-banner-title {
+        font-size: 2.2rem;
+    }
+
+    .page-banner-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .breadcrumb-custom {
+        padding: 8px 18px;
+    }
+
+    .breadcrumb-custom .breadcrumb-item {
+        font-size: 0.82rem;
+    }
+
+    .about-hero-card, .principal-message-box, .contact-form-card {
+        padding: 28px 20px;
+    }
+
+    .featured-event-content {
+        padding: 30px 22px;
+    }
+
+    .map-wrapper {
+        height: 350px;
+    }
+
+    .news-toolbar {
+        padding: 16px 20px;
+    }
+
+    .gallery-card-v2 {
+        height: 240px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .page-banner {
+        padding: 50px 0 40px;
+        text-align: center;
+    }
+
+    .page-banner-title {
+        font-size: 1.85rem;
+    }
+
+    .breadcrumb-wrapper {
+        justify-content: center;
+    }
+
+    .breadcrumb-custom {
+        border-radius: 25px;
+        padding: 6px 14px;
+    }
+
+    .breadcrumb-custom .breadcrumb-item + .breadcrumb-item::before {
+        margin: 0 6px;
+    }
+
+    .contact-form-card {
+        padding: 24px 16px;
+    }
+
+    .contact-form-card::before {
+        left: 20px;
+        right: 20px;
+    }
+
+    .staff-img-wrapper {
+        height: 230px;
+    }
+
+    .gallery-card-v2 {
+        height: 220px;
+    }
+}

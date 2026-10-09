@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="News & Events — St. Mary’s Convent School, Chhallan, Ramkot. Latest updates, announcements, sports competitions, and cultural celebrations.">
+  <title>News & Events — St. Mary’s Convent School, Chhallan, Ramkot</title>
+
+  <!-- Bootstrap 5.3.8 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- Font Awesome 7.3.1 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css">
+
+  <!-- Premium editorial typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Standard Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="notice-bar d-none d-md-block">
+    <div class="container d-flex align-items-center gap-4">
+      <div class="top-contact-info d-flex gap-3">
+        <span><i class="fa-solid fa-phone me-2"></i>+91 8082171498</span>
+        <span><i class="fa-solid fa-envelope me-2"></i>smcsramkot@gmail.com</span>
+      </div>
+      <div class="notice-wrapper flex-grow-1 d-flex align-items-center">
+        <span class="notice-label"><i class="fa-solid fa-bell me-1"></i> Notices</span>
+        <div class="notice-scroll w-100 ms-3">
+          <span>Admissions registration begins in January &nbsp; • &nbsp; Entrance examinations run from March to April
+            &nbsp; • &nbsp; Annual Sports Meet 2026 coming up soon!</span>
+        </div>
+      </div>
+      <div class="notice-wrapper d-flex align-items-center">
+        <a href="contact.html"><span class="notice-label"><i class="fa-solid fa-user me-1"></i> Parent Portal</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Notice Bar -->
+  <div class="notice-bar d-md-none">
+    <div class="container d-flex align-items-center gap-2">
+      <span class="notice-label px-2"><i class="fa-solid fa-bell"></i></span>
+      <div class="notice-scroll flex-grow-1">
+        <span>Admissions registration begins in January &nbsp; • &nbsp; Entrance examinations run from March</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header Navigation -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white" id="mainNav" style="z-index: 1040;">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand py-0" href="index.html">
+        <img src="images/logo.png" alt="St. Mary’s Convent School" style="height: 100px; object-fit: contain;">
+      </a>
+      <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas">
+        <i class="fa-solid fa-bars fs-1" style="color:var(--navy)"></i>
+      </button>
+
+      <div class="collapse navbar-collapse d-none d-lg-flex" id="siteNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="about.html" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              About Us
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="about.html#story">About the School</a></li>
+              <li><a class="dropdown-item" href="about.html#principals">Our Principals</a></li>
+              <li><a class="dropdown-item" href="about.html#leadership">Leadership Team</a></li>
+              <li><a class="dropdown-item" href="about.html#staff">Our Staff</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Affiliation</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#clubs">Clubs</a></li>
+          <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Sports</a></li>
+          <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Facilities</a></li>
+          <li class="nav-item"><a class="nav-link active" href="news-events.html">News & Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item ms-3 me-3">
+            <a class="btn btn-premium" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Offcanvas Menu -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas"
+    style="z-index: 9999 !important; background-color: #fff;">
+    <div class="offcanvas-header border-bottom py-3 px-4 d-flex justify-content-between align-items-center">
+      <img src="images/logo.png" alt="St. Mary’s Convent School" style="height: 45px; object-fit: contain;">
+      <button type="button" class="btn-close shadow-none fs-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body px-4 py-4">
+      <div class="d-lg-none mb-4 pb-4 border-bottom">
+        <a class="btn btn-premium w-100 py-3 d-flex justify-content-center" href="contact.html">Admission Enquiry</a>
+      </div>
+      <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing: 0.1em; font-size: 0.75rem;">Main
+        Navigation</h6>
+      <ul class="navbar-nav flex-column mb-4 gap-2">
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="index.html#clubs">Clubs</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5 active text-danger" href="news-events.html">News
+            & Events</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Subpage Banner & Consistent Breadcrumb Header -->
+  <section class="page-banner text-center">
+    <div class="page-banner-pattern"></div>
+    <div class="container position-relative z-2">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h1 class="page-banner-title">News & Events</h1>
+          <!-- Consistent Breadcrumb -->
+          <div class="breadcrumb-wrapper">
+            <ul class="breadcrumb-custom">
+              <li class="breadcrumb-item"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">News & Events</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Main Event Highlight -->
+  <section class="section py-5">
+    <div class="container">
+      <!-- Search & Category Filter Bar -->
+      <div class="news-toolbar">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-5">
+            <div class="search-box-custom">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="newsSearchInput" placeholder="Search news by title or keyword..."
+                onkeyup="filterNews()">
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="filter-pills justify-content-lg-end m-0">
+              <button class="filter-btn active" data-filter="all" onclick="filterCategory('all', this)">All
+                Updates</button>
+              <button class="filter-btn" data-filter="academic"
+                onclick="filterCategory('academic', this)">Academic</button>
+              <button class="filter-btn" data-filter="sports" onclick="filterCategory('sports', this)">Sports</button>
+              <button class="filter-btn" data-filter="cultural"
+                onclick="filterCategory('cultural', this)">Cultural</button>
+              <button class="filter-btn" data-filter="notices"
+                onclick="filterCategory('notices', this)">Notices</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Grid Container -->
+      <div class="row g-4" id="newsGrid">
+
+        <!-- News Item 1 -->
+        <div class="col-lg-4 col-md-6 news-item-col" data-category="cultural"
+          data-title="Grand Annual Cultural Fiesta Celebrated">
+          <div class="news-card-v2">
+            <div class="news-thumb-wrapper">
+              <img src="images/news/news1.jpg" alt="Annual Cultural Fiesta">
+              <span class="news-category-badge">Cultural Fest</span>
+              <span class="news-date-chip">05 OCT</span>
+            </div>
+            <div class="news-card-body">
+              <h4 class="news-title-v2">Grand Annual Cultural Fiesta Celebrated with Zest & Creativity</h4>
+              <p class="news-excerpt">
+                Students showcased vibrant folk dances, theatrical performances, and musical renditions highlighting
+                regional heritage and global harmony.
+              </p>
+              <div class="news-card-footer">
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 3 min read</span>
+                <button class="btn p-0 news-link-btn"
+                  onclick="openNewsModal('Grand Annual Cultural Fiesta Celebrated', 'images/news/news1.jpg', '05 October 2026', 'Cultural Fest', 'The annual cultural gala at St. Mary’s Convent School brought together over 800 students demonstrating phenomenal talents in classical dance, drama, and folk choir. Principal Sr. commended the mentors and participants for their extraordinary effort.')">Read
+                  Story <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Item 2 -->
+        <div class="col-lg-4 col-md-6 news-item-col" data-category="academic"
+          data-title="CBSE Regional Science Exhibition Winners">
+          <div class="news-card-v2">
+            <div class="news-thumb-wrapper">
+              <img src="images/news/news2.jpg" alt="Science Exhibition">
+              <span class="news-category-badge">Academic</span>
+              <span class="news-date-chip">28 SEP</span>
+            </div>
+            <div class="news-card-body">
+              <h4 class="news-title-v2">Students Bag Top Honors at CBSE Regional Science Exhibition</h4>
+              <p class="news-excerpt">
+                Our young innovators secured First Prize for their solar-powered automated irrigation prototype designed
+                for hilly agricultural terrains.
+              </p>
+              <div class="news-card-footer">
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 4 min read</span>
+                <button class="btn p-0 news-link-btn"
+                  onclick="openNewsModal('CBSE Regional Science Exhibition Winners', 'images/news/news2.jpg', '28 September 2026', 'Academic', 'Class IX & X students represented SMCS Ramkot at the CBSE Regional Science Expo. Their project on Smart Renewable Irrigation in Rural Jammu earned 1st place and selection for National Level finals.')">Read
+                  Story <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Item 3 -->
+        <div class="col-lg-4 col-md-6 news-item-col" data-category="sports"
+          data-title="Inter School Athletic Championship">
+          <div class="news-card-v2">
+            <div class="news-thumb-wrapper">
+              <img src="images/news/news3.jpg" alt="Athletic Championship">
+              <span class="news-category-badge">Sports</span>
+              <span class="news-date-chip">18 SEP</span>
+            </div>
+            <div class="news-card-body">
+              <h4 class="news-title-v2">Inter-School Athletic Championship Trophy Lifted by SMCS</h4>
+              <p class="news-excerpt">
+                St. Mary’s sports contingent won 12 Gold, 8 Silver, and 5 Bronze medals across track & field events at
+                the Kathua District Athletic Meet.
+              </p>
+              <div class="news-card-footer">
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 2 min read</span>
+                <button class="btn p-0 news-link-btn"
+                  onclick="openNewsModal('Inter-School Athletic Championship Trophy Lifted', 'images/news/news3.jpg', '18 September 2026', 'Sports', 'Our school athletics team dominated the district championship with stellar performances in 100m sprint, long jump, and 4x100m relay, clinching the overall champion trophy.')">Read
+                  Story <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Item 4 -->
+        <div class="col-lg-4 col-md-6 news-item-col" data-category="notices"
+          data-title="Parent Teacher Interactive Conference">
+          <div class="news-card-v2">
+            <div class="news-thumb-wrapper">
+              <img src="images/news/news4.jpg" alt="Parent Teacher Conference">
+              <span class="news-category-badge">Notices</span>
+              <span class="news-date-chip">10 SEP</span>
+            </div>
+            <div class="news-card-body">
+              <h4 class="news-title-v2">Parent-Teacher Interactive Conference Scheduled for Term-I</h4>
+              <p class="news-excerpt">
+                Parents are cordially invited to review academic performance progress, holistic report cards, and
+                co-curricular feedback with class mentors.
+              </p>
+              <div class="news-card-footer">
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 2 min read</span>
+                <button class="btn p-0 news-link-btn"
+                  onclick="openNewsModal('Parent-Teacher Interactive Conference', 'images/news/news4.jpg', '10 September 2026', 'Notices', 'The Term-I PTM will be conducted in two slots (8:30 AM to 12:30 PM). Detailed feedback on student progress, attendance, and extracurricular involvement will be shared.')">Read
+                  Story <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Item 5 -->
+        <div class="col-lg-4 col-md-6 news-item-col" data-category="cultural" data-title="Tree Plantation Eco Drive">
+          <div class="news-card-v2">
+            <div class="news-thumb-wrapper">
+              <img src="images/news/news5.jpg" alt="Eco Drive">
+              <span class="news-category-badge">Eco Club</span>
+              <span class="news-date-chip">25 AUG</span>
+            </div>
+            <div class="news-card-body">
+              <h4 class="news-title-v2">Green Campus Drive: 500+ Saplings Planted by Eco Club</h4>
+              <p class="news-excerpt">
+                Eco Club volunteers initiated a green canopy project planting native trees around school grounds and
+                neighboring village roadsides.
+              </p>
+              <div class="news-card-footer">
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 3 min read</span>
+                <button class="btn p-0 news-link-btn"
+                  onclick="openNewsModal('Green Campus Drive Saplings Planted', 'images/news/news5.jpg', '25 August 2026', 'Eco Club', 'Under the guidance of the Eco Club mentors, students planted 500 fruit and medicinal saplings, adopting plants to nurture throughout their school tenure.')">Read
+                  Story <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Item 6 -->
+        <div class="col-lg-4 col-md-6 news-item-col" data-category="academic"
+          data-title="Robotics and Coding Lab Inauguration">
+          <div class="news-card-v2">
+            <div class="news-thumb-wrapper">
+              <img src="images/news/news6.jpg" alt="Robotics Lab">
+              <span class="news-category-badge">Academic</span>
+              <span class="news-date-chip">14 AUG</span>
+            </div>
+            <div class="news-card-body">
+              <h4 class="news-title-v2">State-of-the-Art Robotics & STEM Innovation Lab Launched</h4>
+              <p class="news-excerpt">
+                Equipped with 3D printers, micro-controllers, and AI kits to empower students with hands-on coding and
+                engineering skills.
+              </p>
+              <div class="news-card-footer">
+                <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> 4 min read</span>
+                <button class="btn p-0 news-link-btn"
+                  onclick="openNewsModal('Robotics & STEM Lab Launched', 'images/news/news6.jpg', '14 August 2026', 'Academic', 'The management inaugurated the new STEM & Robotics Hub. Students from Class 5 onwards will receive practical training in Arduino programming, electronics, and 3D design.')">Read
+                  Story <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pagination -->
+      <nav class="d-flex justify-content-center">
+        <ul class="pagination-custom list-unstyled">
+          <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-chevron-right"></i></a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </section>
+
+  <!-- News Article Lightbox Modal -->
+  <div class="modal fade" id="newsArticleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+        <div class="position-relative">
+          <img id="modalNewsImg" src="" alt="News Image" class="w-100" style="height: 320px; object-fit: cover;">
+          <button type="button"
+            class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3 shadow-sm bg-dark p-2 rounded-circle"
+            data-bs-dismiss="modal"></button>
+          <span id="modalNewsCategory"
+            class="position-absolute bottom-0 start-0 m-3 badge bg-warning text-dark fw-bold px-3 py-2 text-uppercase"></span>
+        </div>
+        <div class="modal-body p-4 p-md-5 bg-white">
+          <div class="text-muted small mb-2"><i class="fa-regular fa-calendar me-2 text-gold"></i><span
+              id="modalNewsDate"></span></div>
+          <h3 id="modalNewsTitle" class="serif text-navy mb-4"></h3>
+          <p id="modalNewsBody" class="section-copy fs-6" style="line-height: 1.8;"></p>
+          <div class="border-top pt-4 mt-4 d-flex justify-content-between align-items-center">
+            <span class="small text-muted">Share this story:</span>
+            <div class="d-flex gap-2">
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle"
+                style="width:34px; height:34px; display:grid; place-items:center;"><i
+                  class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle"
+                style="width:34px; height:34px; display:grid; place-items:center;"><i
+                  class="fa-brands fa-whatsapp"></i></a>
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle"
+                style="width:34px; height:34px; display:grid; place-items:center;"><i
+                  class="fa-brands fa-x-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer bg-navy text-white pt-5 pb-4"
+    style="background:var(--navy); border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="container">
+      <div class="row g-4 mb-5">
+        <div class="col-lg-4 col-md-6">
+          <img src="images/logo-wide-light.png" alt="St. Mary's Convent School"
+            style="height: 55px; object-fit: contain;" class="mb-3">
+          <p class="text-white-50 small mb-3">
+            St. Mary’s Convent School, Chhallan, Ramkot, Jammu — A unit of Diocese of Jammu-Srinagar Education Society
+            (DJSES). Lighted for Life since 1987.
+          </p>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h5 class="text-gold-light mb-3 serif">Quick Links</h5>
+          <ul class="list-unstyled small d-flex flex-column gap-2">
+            <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+            <li><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+            <li><a href="news-events.html" class="text-white-50 text-decoration-none">News & Events</a></li>
+            <li><a href="gallery.html" class="text-white-50 text-decoration-none">Photo Gallery</a></li>
+            <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-gold-light mb-3 serif">Contact Info</h5>
+          <div class="small text-white-50 mb-2"><i class="fa-solid fa-location-dot me-2 text-gold"></i>Chhallan, Ramkot,
+            Teh. Ramkot, Dist. Kathua, J&K – 184205</div>
+          <div class="small text-white-50 mb-2"><i class="fa-solid fa-phone me-2 text-gold"></i>+91 8082171498</div>
+          <div class="small text-white-50"><i class="fa-solid fa-envelope me-2 text-gold"></i>smcsramkot@gmail.com</div>
+        </div>
+      </div>
+      <div
+        class="border-top border-secondary pt-4 text-center small text-white-50 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <span>© 2026 St. Mary’s Convent School, Chhallan, Ramkot. All Rights Reserved.</span>
+        <span>Powered by <strong class="text-white">Bosco Soft Technologies Pvt Ltd</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Social Buttons -->
+  <div class="float-actions">
+    <a href="#" class="float-btn fb" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" class="float-btn ig" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" class="float-btn yt" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script>
+    // Category Filtering
+    function filterCategory(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const items = document.querySelectorAll('.news-item-col');
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Search Keyword Filter
+    function filterNews() {
+      const query = document.getElementById('newsSearchInput').value.toLowerCase();
+      const items = document.querySelectorAll('.news-item-col');
+      items.forEach(item => {
+        const title = item.dataset.title.toLowerCase();
+        if (title.includes(query)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Open News Lightbox Modal
+    function openNewsModal(title, imgSrc, date, category, body) {
+      document.getElementById('modalNewsTitle').textContent = title;
+      document.getElementById('modalNewsImg').src = imgSrc;
+      document.getElementById('modalNewsDate').textContent = date;
+      document.getElementById('modalNewsCategory').textContent = category;
+      document.getElementById('modalNewsBody').textContent = body;
+
+      const modal = new bootstrap.Modal(document.getElementById('newsArticleModal'));
+      modal.show();
+    }
+  </script>
+</body>
+
+</html>

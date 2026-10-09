@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Photo & Video Gallery — St. Mary’s Convent School, Chhallan, Ramkot. Explore campus photos, sports events, cultural programs, and student activities.">
+  <title>Gallery — St. Mary’s Convent School, Chhallan, Ramkot</title>
+
+  <!-- Bootstrap 5.3.8 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- Font Awesome 7.3.1 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css">
+
+  <!-- Premium editorial typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Standard Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="notice-bar d-none d-md-block">
+    <div class="container d-flex align-items-center gap-4">
+      <div class="top-contact-info d-flex gap-3">
+        <span><i class="fa-solid fa-phone me-2"></i>+91 8082171498</span>
+        <span><i class="fa-solid fa-envelope me-2"></i>smcsramkot@gmail.com</span>
+      </div>
+      <div class="notice-wrapper flex-grow-1 d-flex align-items-center">
+        <span class="notice-label"><i class="fa-solid fa-bell me-1"></i> Notices</span>
+        <div class="notice-scroll w-100 ms-3">
+          <span>Explore recent event moments, annual sports celebrations, and cultural highlights in our gallery.</span>
+        </div>
+      </div>
+      <div class="notice-wrapper d-flex align-items-center">
+        <a href="contact.html"><span class="notice-label"><i class="fa-solid fa-user me-1"></i> Parent Portal</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Notice Bar -->
+  <div class="notice-bar d-md-none">
+    <div class="container d-flex align-items-center gap-2">
+      <span class="notice-label px-2"><i class="fa-solid fa-bell"></i></span>
+      <div class="notice-scroll flex-grow-1">
+        <span>Photo & Video Gallery — St. Mary’s Convent School</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header Navigation -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white" id="mainNav" style="z-index: 1040;">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand py-0" href="index.html">
+        <img src="images/logo.png" alt="St. Mary’s Convent School" style="height: 100px; object-fit: contain;">
+      </a>
+      <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas">
+        <i class="fa-solid fa-bars fs-1" style="color:var(--navy)"></i>
+      </button>
+
+      <div class="collapse navbar-collapse d-none d-lg-flex" id="siteNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="about.html" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              About Us
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="about.html#story">About the School</a></li>
+              <li><a class="dropdown-item" href="about.html#principals">Our Principals</a></li>
+              <li><a class="dropdown-item" href="about.html#leadership">Leadership Team</a></li>
+              <li><a class="dropdown-item" href="about.html#staff">Our Staff</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Affiliation</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#clubs">Clubs</a></li>
+          <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Sports</a></li>
+          <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Facilities</a></li>
+          <li class="nav-item"><a class="nav-link" href="news-events.html">News & Events</a></li>
+          <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+          <li class="nav-item ms-3 me-3">
+            <a class="btn btn-premium" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Offcanvas Menu -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas"
+    style="z-index: 9999 !important; background-color: #fff;">
+    <div class="offcanvas-header border-bottom py-3 px-4 d-flex justify-content-between align-items-center">
+      <img src="images/logo.png" alt="St. Mary’s Convent School" style="height: 45px; object-fit: contain;">
+      <button type="button" class="btn-close shadow-none fs-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body px-4 py-4">
+      <div class="d-lg-none mb-4 pb-4 border-bottom">
+        <a class="btn btn-premium w-100 py-3 d-flex justify-content-center" href="contact.html">Admission Enquiry</a>
+      </div>
+      <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing: 0.1em; font-size: 0.75rem;">Main
+        Navigation</h6>
+      <ul class="navbar-nav flex-column mb-4 gap-2">
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="news-events.html">News & Events</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5 active text-danger"
+            href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-dark fs-5" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Subpage Banner & Consistent Breadcrumbs Header -->
+  <section class="page-banner text-center">
+    <div class="page-banner-pattern"></div>
+    <div class="container position-relative z-2">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h1 class="page-banner-title">Gallery</h1>
+          <!-- Consistent Breadcrumb -->
+          <div class="breadcrumb-wrapper">
+            <ul class="breadcrumb-custom">
+              <li class="breadcrumb-item"><a href="index.html"><i class="fa-solid fa-house me-2"></i>Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section -->
+  <section class="section py-5">
+    <div class="container">
+
+      <!-- Category Filters Bar -->
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+        <button class="filter-btn active" data-filter="all">All Moments</button>
+        <button class="filter-btn" data-filter="campus">Campus & Life</button>
+        <button class="filter-btn" data-filter="sports">Annual Sports</button>
+        <button class="filter-btn" data-filter="cultural">Cultural Fest</button>
+        <button class="filter-btn" data-filter="academic">Academic & STEM</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="row g-4">
+
+        <!-- Photo Item 1 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="campus">
+          <div class="gallery-card-v2 gallery-item" data-image="images/gallery/gallery1.jpg"
+            data-title="Morning Assembly & Prayer Gathering">
+            <img src="images/gallery/gallery1.jpg" alt="Morning Assembly">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">Morning Assembly & Prayer Gathering</h5>
+              <!-- <span class="text-gold-light small">Campus & Life</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Item 2 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="sports">
+          <div class="gallery-card-v2 gallery-item" data-image="images/gallery/gallery2.jpg"
+            data-title="Annual Sports Day Sprint Championship">
+            <img src="images/gallery/gallery2.jpg" alt="Sports Day Sprint">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">Annual Sports Day Sprint Championship</h5>
+              <!-- <span class="text-gold-light small">Annual Sports</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Item 3 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="cultural">
+          <div class="gallery-card-v2 gallery-item" data-image="images/gallery/gallery3.jpg"
+            data-title="Traditional Cultural Dance Performance">
+            <img src="images/gallery/gallery3.jpg" alt="Cultural Dance">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">Traditional Cultural Dance Performance</h5>
+              <!-- <span class="text-gold-light small">Cultural Fest</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Item 4 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="academic">
+          <div class="gallery-card-v2 gallery-item" data-image="images/gallery/gallery4.jpg"
+            data-title="Science & Robotics Model Presentation">
+            <img src="images/gallery/gallery4.jpg" alt="Science Presentation">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">Science & Robotics Model Presentation</h5>
+              <!-- <span class="text-gold-light small">Academic & STEM</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Item 5 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="cultural">
+          <div class="gallery-card-v2 gallery-item" data-image="images/gallery/gallery5.jpg"
+            data-title="Independence Day Grand Celebration">
+            <img src="images/gallery/gallery5.jpg" alt="Independence Day">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">Independence Day Grand Celebration</h5>
+              <!-- <span class="text-gold-light small">Cultural Fest</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Item 6 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="academic">
+          <div class="gallery-card-v2 gallery-item" data-image="images/gallery/gallery6.jpg"
+            data-title="Smart Classroom Interactive Session">
+            <img src="images/gallery/gallery6.jpg" alt="Smart Classroom">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">Smart Classroom Interactive Session</h5>
+              <!-- <span class="text-gold-light small">Academic & STEM</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Item 7 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="campus">
+          <div class="gallery-card-v2 gallery-item" data-image="images/about.jpg"
+            data-title="School Main Building & Campus Grounds">
+            <img src="images/about.jpg" alt="School Building">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">School Main Building & Campus Grounds</h5>
+              <!-- <span class="text-gold-light small">Campus & Life</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Item 8 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="sports">
+          <div class="gallery-card-v2 gallery-item" data-image="images/slider/slider3.jpg"
+            data-title="Inter-House Tug of War Championship">
+            <img src="images/slider/slider3.jpg" alt="Tug of War">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">Inter-House Tug of War Championship</h5>
+              <!-- <span class="text-gold-light small">Annual Sports</span> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Item 9 -->
+        <div class="col-lg-4 col-md-6 gallery-box" data-category="cultural">
+          <div class="gallery-card-v2 gallery-item" data-image="images/slider/slider4.jpg"
+            data-title="Art & Fine Craft Exhibition">
+            <img src="images/slider/slider4.jpg" alt="Art Exhibition">
+            <div class="gallery-overlay-v2">
+              <div class="gallery-zoom-icon"><i class="fa-solid fa-expand"></i></div>
+              <h5 class="gallery-title-v2">Art & Fine Craft Exhibition</h5>
+              <!-- <span class="text-gold-light small">Cultural Fest</span> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer bg-navy text-white pt-5 pb-4"
+    style="background:var(--navy); border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="container">
+      <div class="row g-4 mb-5">
+        <div class="col-lg-4 col-md-6">
+          <img src="images/logo-wide-light.png" alt="St. Mary's Convent School"
+            style="height: 55px; object-fit: contain;" class="mb-3">
+          <p class="text-white-50 small mb-3">
+            St. Mary’s Convent School, Chhallan, Ramkot, Jammu — A unit of Diocese of Jammu-Srinagar Education Society
+            (DJSES). Lighted for Life since 1987.
+          </p>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h5 class="text-gold-light mb-3 serif">Quick Links</h5>
+          <ul class="list-unstyled small d-flex flex-column gap-2">
+            <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+            <li><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+            <li><a href="news-events.html" class="text-white-50 text-decoration-none">News & Events</a></li>
+            <li><a href="gallery.html" class="text-white-50 text-decoration-none">Photo Gallery</a></li>
+            <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-gold-light mb-3 serif">Contact Info</h5>
+          <div class="small text-white-50 mb-2"><i class="fa-solid fa-location-dot me-2 text-gold"></i>Chhallan, Ramkot,
+            Teh. Ramkot, Dist. Kathua, J&K – 184205</div>
+          <div class="small text-white-50 mb-2"><i class="fa-solid fa-phone me-2 text-gold"></i>+91 8082171498</div>
+          <div class="small text-white-50"><i class="fa-solid fa-envelope me-2 text-gold"></i>smcsramkot@gmail.com</div>
+        </div>
+      </div>
+      <div
+        class="border-top border-secondary pt-4 text-center small text-white-50 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <span>© 2026 St. Mary’s Convent School, Chhallan, Ramkot. All Rights Reserved.</span>
+        <span>Powered by <strong class="text-white">Bosco Soft Technologies Pvt Ltd</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Social Buttons -->
+  <div class="float-actions">
+    <a href="#" class="float-btn fb" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" class="float-btn ig" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" class="float-btn yt" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script>
+    // Gallery Category Filtering
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.gallery-box').forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // Modal Viewer
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.getElementById('modalImage').src = item.dataset.image;
+        document.getElementById('modalTitle').textContent = item.dataset.title;
+        const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+      });
+    });
+  </script>
+</body>
+
+</html>
