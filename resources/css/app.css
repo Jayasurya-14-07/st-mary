@@ -62,7 +62,7 @@ a {
     white-space: nowrap;
 }
 
-.notice-scroll > span {
+.notice-scroll>span {
     display: inline-block;
     animation: marquee 24s linear infinite;
 }
@@ -558,6 +558,28 @@ a {
     font-size: 2.1rem
 }
 
+.tiptap-content-white p {
+    margin-bottom: 0.5rem;
+}
+
+.tiptap-content-white p:last-child {
+    margin-bottom: 0;
+}
+
+.tiptap-content-white ul {
+    padding-left: 1.25rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+
+.tiptap-content-white li {
+    margin-bottom: 0.35rem;
+}
+
+.tiptap-content-white li p {
+    margin-bottom: 0;
+}
+
 /* ---------- alumni ---------- */
 .alumni-card {
     background: #fff;
@@ -964,12 +986,12 @@ footer a:hover {
     white-space: nowrap;
 }
 
-.notice-scroll > span {
+.notice-scroll>span {
     display: inline-block;
     animation: marquee 25s linear infinite;
 }
 
-.notice-scroll:hover > span {
+.notice-scroll:hover>span {
     animation-play-state: paused;
 }
 
@@ -1983,7 +2005,7 @@ footer h5 {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: 
+    background-image:
         radial-gradient(circle at 10% 20%, rgba(199, 154, 72, 0.18) 0%, transparent 45%),
         radial-gradient(circle at 90% 80%, rgba(141, 38, 56, 0.28) 0%, transparent 50%);
     pointer-events: none;
@@ -2061,11 +2083,11 @@ footer h5 {
     font-size: 0.8rem;
 }
 
-.breadcrumb-custom .breadcrumb-item + .breadcrumb-item {
+.breadcrumb-custom .breadcrumb-item+.breadcrumb-item {
     padding-left: 0;
 }
 
-.breadcrumb-custom .breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-custom .breadcrumb-item+.breadcrumb-item::before {
     content: "\f105";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;

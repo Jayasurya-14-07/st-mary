@@ -544,6 +544,24 @@ a {
     font-size: 2.1rem
 }
 
+.tiptap-content-white p {
+    margin-bottom: 0.5rem;
+}
+.tiptap-content-white p:last-child {
+    margin-bottom: 0;
+}
+.tiptap-content-white ul {
+    padding-left: 1.25rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+.tiptap-content-white li {
+    margin-bottom: 0.35rem;
+}
+.tiptap-content-white li p {
+    margin-bottom: 0;
+}
+
 /* ---------- alumni ---------- */
 .alumni-card {
     background: #fff;

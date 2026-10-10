@@ -254,29 +254,88 @@ class HomeController extends Controller
             $formattedLeadership = collect($this->getDefaultLeadershipMessages());
         }
 
-        $vision = Pages::where('slug', 'vision')->where('status', 1)->first();
-        $mission = Pages::where('slug', 'mission')->where('status', 1)->first();
-        $missionFocus = Pages::where('slug', 'mission-focus')->where('status', 1)->first();
+        $extractExcerptOrContent = function ($item) {
+            if (!$item) return null;
+            if (!empty($item->excerpt)) {
+                return $item->excerpt;
+            }
+            if (!empty($item->content)) {
+                if (is_string($item->content)) {
+                    return $item->content;
+                }
+                if (is_array($item->content)) {
+                    $parts = [];
+                    foreach ($item->content as $block) {
+                        if (!empty($block['data']['content']) && is_string($block['data']['content'])) {
+                            $parts[] = $block['data']['content'];
+                        }
+                    }
+                    if (!empty($parts)) {
+                        return implode('', $parts);
+                    }
+                }
+            }
+            return null;
+        };
 
-        $formattedVision = $vision ? [
-            'title'    => $vision->title,
-            'slug'     => $vision->slug,
-            'subtitle' => $vision->author,
-            'excerpt'  => $vision->excerpt,
+        // 1. Mission: Category 'mission' post first, fallback to Pages 'mission'
+        $missionCat = Category::where('slug', 'mission')->first();
+        $missionPost = $missionCat
+            ? $missionCat->posts()
+                ->where('status', 1)
+                ->orderBy('order_by', 'asc')
+                ->latest('publish_date')
+                ->orderBy('id', 'desc')
+                ->first()
+            : null;
+
+        $missionSource = $missionPost ?: Pages::where('slug', 'mission')->where('status', 1)->first();
+
+        $formattedMission = $missionSource ? [
+            'title'    => $missionSource->title,
+            'slug'     => $missionSource->slug,
+            'subtitle' => $missionSource->author,
+            'excerpt'  => $extractExcerptOrContent($missionSource),
         ] : null;
 
-        $formattedMission = $mission ? [
-            'title'    => $mission->title,
-            'slug'     => $mission->slug,
-            'subtitle' => $mission->author,
-            'excerpt'  => $mission->excerpt,
+        // 2. Vision: Category 'vision' post first, fallback to Pages 'vision'
+        $visionCat = Category::where('slug', 'vision')->first();
+        $visionPost = $visionCat
+            ? $visionCat->posts()
+                ->where('status', 1)
+                ->orderBy('order_by', 'asc')
+                ->latest('publish_date')
+                ->orderBy('id', 'desc')
+                ->first()
+            : null;
+
+        $visionSource = $visionPost ?: Pages::where('slug', 'vision')->where('status', 1)->first();
+
+        $formattedVision = $visionSource ? [
+            'title'    => $visionSource->title,
+            'slug'     => $visionSource->slug,
+            'subtitle' => $visionSource->author,
+            'excerpt'  => $extractExcerptOrContent($visionSource),
         ] : null;
 
-        $formattedMissionFocus = $missionFocus ? [
-            'title'    => $missionFocus->title,
-            'slug'     => $missionFocus->slug,
-            'subtitle' => $missionFocus->author,
-            'excerpt'  => $missionFocus->excerpt,
+        // 3. Mission Focus: Category 'mission-focus' post first, fallback to Pages 'mission-focus'
+        $focusCat = Category::where('slug', 'mission-focus')->first();
+        $focusPost = $focusCat
+            ? $focusCat->posts()
+                ->where('status', 1)
+                ->orderBy('order_by', 'asc')
+                ->latest('publish_date')
+                ->orderBy('id', 'desc')
+                ->first()
+            : null;
+
+        $focusSource = $focusPost ?: Pages::where('slug', 'mission-focus')->where('status', 1)->first();
+
+        $formattedMissionFocus = $focusSource ? [
+            'title'    => $focusSource->title,
+            'slug'     => $focusSource->slug,
+            'subtitle' => $focusSource->author,
+            'excerpt'  => $extractExcerptOrContent($focusSource),
         ] : null;
 
         return Inertia::render('Home', [
