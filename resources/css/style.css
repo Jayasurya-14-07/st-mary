@@ -62,7 +62,7 @@ a {
     white-space: nowrap;
 }
 
-.notice-scroll > span {
+.notice-scroll>span {
     display: inline-block;
     animation: marquee 24s linear infinite;
 }
@@ -547,17 +547,21 @@ a {
 .tiptap-content-white p {
     margin-bottom: 0.5rem;
 }
+
 .tiptap-content-white p:last-child {
     margin-bottom: 0;
 }
+
 .tiptap-content-white ul {
     padding-left: 1.25rem;
     margin-top: 0.35rem;
     margin-bottom: 0.5rem;
 }
+
 .tiptap-content-white li {
     margin-bottom: 0.35rem;
 }
+
 .tiptap-content-white li p {
     margin-bottom: 0;
 }
@@ -968,12 +972,12 @@ footer a:hover {
     white-space: nowrap;
 }
 
-.notice-scroll > span {
+.notice-scroll>span {
     display: inline-block;
     animation: marquee 25s linear infinite;
 }
 
-.notice-scroll:hover > span {
+.notice-scroll:hover>span {
     animation-play-state: paused;
 }
 
@@ -1310,6 +1314,26 @@ footer h5 {
     color: var(--gold-light);
     margin-top: 5px;
     font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.footer-contact-row.align-items-center {
+    align-items: center;
+}
+
+.footer-contact-row.align-items-center i {
+    margin-top: 0;
+}
+
+.footer-contact-row a {
+    transition: var(--transition);
+}
+
+.footer-contact-row a:hover {
+    color: var(--gold-light) !important;
 }
 
 .school-details-list {

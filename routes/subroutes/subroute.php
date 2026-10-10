@@ -17,7 +17,17 @@ function registerRoutesForItems($items, string $controllerClass, ?string $prefix
     foreach ($items as $item) {
         $slug = $prefix ? "{$prefix}/{$item->slug}" : $item->slug;
 
-        if ($slug === 'contact-us' || $slug === 'contact') {
+        $reservedSlugs = [
+            'contact-us',
+            'contact',
+            'news-events',
+            'our-clubs',
+            'gallery',
+            'video-gallery',
+            'facilities',
+        ];
+
+        if (in_array(trim($slug, '/'), $reservedSlugs)) {
             continue;
         }
 

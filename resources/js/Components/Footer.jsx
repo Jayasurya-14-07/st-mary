@@ -49,13 +49,13 @@ export default function Footer() {
                                 Vill. Chhallan, Ramkot, Teh. Ramkot,<br />
                                 Dist. Kathua, J&amp;K (UT) – 184205</div>
                         </div>
-                        <div className="footer-contact-row">
+                        <div className="footer-contact-row align-items-center">
                             <i className="fa-solid fa-phone"></i>
                             <div>
                                 <a href="tel:+918082171498" className="text-white-50 text-decoration-none">+91 8082171498</a>
                             </div>
                         </div>
-                        <div className="footer-contact-row">
+                        <div className="footer-contact-row align-items-center">
                             <i className="fa-solid fa-envelope"></i>
                             <div>
                                 <a href="mailto:school@smcsramkot.in" className="text-white-50 text-decoration-none">school@smcsramkot.in</a>

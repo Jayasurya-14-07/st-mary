@@ -26,7 +26,17 @@ if (Schema::hasTable('pages')) {
             continue;
         }
 
-        if (trim($fullPath, '/') === 'contact-us') {
+        $reservedPaths = [
+            'contact-us',
+            'contact',
+            'news-events',
+            'our-clubs',
+            'gallery',
+            'video-gallery',
+            'facilities',
+        ];
+
+        if (in_array(trim($fullPath, '/'), $reservedPaths)) {
             continue;
         }
 

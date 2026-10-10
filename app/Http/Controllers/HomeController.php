@@ -154,26 +154,18 @@ class HomeController extends Controller
             }
         }
 
-        $newsCategory = Category::where('slug', 'news-events')->first();
-        $newsEvents = collect();
-
-        if ($newsCategory) {
-            $newsEvents = $newsCategory->posts()
-                ->with(['tag', 'categories'])
-                ->where('status', 1)
-                ->latest('publish_date')
-                ->orderBy('id', 'desc')
-                ->get();
-        }
-
-        if ($newsEvents->isEmpty()) {
-            $newsEvents = Posts::with(['tag', 'categories'])
-                ->where('status', 1)
-                ->latest('publish_date')
-                ->orderBy('id', 'desc')
-                ->take(12)
-                ->get();
-        }
+        $newsCategoryIds = Category::whereIn('slug', ['news-events', 'news', 'events'])->pluck('id');
+        $newsEvents = Posts::where(function ($query) use ($newsCategoryIds) {
+            $query->whereHas('categories', function ($q) use ($newsCategoryIds) {
+                $q->whereIn('categories.id', $newsCategoryIds);
+            })->orWhereIn('category_id', $newsCategoryIds);
+        })
+        ->with(['tag', 'categories'])
+        ->where('status', 1)
+        ->orderByRaw('COALESCE(publish_date, created_at) DESC')
+        ->orderBy('id', 'desc')
+        ->take(10)
+        ->get();
 
         $formattedNewsEvents = $newsEvents->map(function ($post) {
             return [
@@ -583,27 +575,22 @@ class HomeController extends Controller
 
     public function newsEvents()
     {
-        $newsCategory = Category::where('slug', 'news-events')->first();
-        $newsEvents = collect();
+        $newsCategoryIds = Category::whereIn('slug', ['news-events', 'news', 'events'])->pluck('id');
+        $newsEvents = Posts::where(function ($query) use ($newsCategoryIds) {
+            $query->whereHas('categories', function ($q) use ($newsCategoryIds) {
+                $q->whereIn('categories.id', $newsCategoryIds);
+            })->orWhereIn('category_id', $newsCategoryIds);
+        })
+        ->with(['tag', 'categories'])
+        ->where('status', 1)
+        ->orderByRaw('COALESCE(publish_date, created_at) DESC')
+        ->orderBy('id', 'desc')
+        ->get();
 
-        if ($newsCategory) {
-            $newsEvents = $newsCategory->posts()
-                ->with(['tag', 'categories'])
-                ->where('status', 1)
-                ->latest('publish_date')
-                ->orderBy('id', 'desc')
-                ->get();
-        }
-
-        if ($newsEvents->isEmpty()) {
-            $newsEvents = Posts::with(['tag', 'categories'])
-                ->where('status', 1)
-                ->latest('publish_date')
-                ->orderBy('id', 'desc')
-                ->get();
-        }
-
-        $tags = \App\Models\Tag::orderBy('name', 'asc')->get();
+        $tagIdsInNews = $newsEvents->pluck('tag_id')->filter()->unique();
+        $tags = $tagIdsInNews->isNotEmpty()
+            ? \App\Models\Tag::whereIn('id', $tagIdsInNews)->orderBy('name', 'asc')->get()
+            : collect();
 
         $formattedNewsEvents = $newsEvents->map(function ($post) {
             return [

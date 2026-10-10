@@ -16,11 +16,11 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
 
     const filteredItems = useMemo(() => {
         return allItems.filter(item => {
-            const matchesSearch = !searchQuery || 
+            const matchesSearch = !searchQuery ||
                 (item.title && item.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
                 (item.excerpt && item.excerpt.toLowerCase().includes(searchQuery.toLowerCase()));
 
-            const matchesTag = selectedTag === 'all' || 
+            const matchesTag = selectedTag === 'all' ||
                 (item.tag_id && String(item.tag_id) === String(selectedTag)) ||
                 (item.tag_name && item.tag_name.toLowerCase() === String(selectedTag).toLowerCase());
 
@@ -45,6 +45,14 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
         setCurrentPage(1);
     };
 
+    // Only show tags that actually have matching posts in newsEvents
+    const availableTags = useMemo(() => {
+        if (!tags || tags.length === 0) return [];
+        const postTagIds = new Set(allItems.map(item => String(item.tag_id)).filter(Boolean));
+        const postTagNames = new Set(allItems.map(item => (item.tag_name || '').toLowerCase()).filter(Boolean));
+        return tags.filter(tag => postTagIds.has(String(tag.id)) || postTagNames.has((tag.name || '').toLowerCase()));
+    }, [tags, allItems]);
+
     return (
         <AppLayout>
             <Head title="News & Events — St. Mary's Convent School" />
@@ -59,8 +67,8 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
                             <div className="col-lg-5">
                                 <div className="search-box-custom">
                                     <i className="fa-solid fa-magnifying-glass"></i>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         className="form-control border-0 shadow-none bg-transparent ps-5"
                                         placeholder="Search news by title or keyword..."
                                         value={searchQuery}
@@ -70,31 +78,21 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
                             </div>
                             <div className="col-lg-7">
                                 <div className="filter-pills justify-content-lg-end m-0 d-flex flex-wrap gap-2">
-                                    <button 
+                                    <button
                                         className={`filter-btn ${selectedTag === 'all' ? 'active' : ''}`}
                                         onClick={() => handleTagChange('all')}
                                     >
                                         All Updates
                                     </button>
 
-                                    {tags && tags.length > 0 ? (
-                                        tags.map((tag) => (
-                                            <button 
+                                    {availableTags && availableTags.length > 0 && (
+                                        availableTags.map((tag) => (
+                                            <button
                                                 key={tag.id}
                                                 className={`filter-btn ${selectedTag === tag.id ? 'active' : ''}`}
                                                 onClick={() => handleTagChange(tag.id)}
                                             >
                                                 {tag.name}
-                                            </button>
-                                        ))
-                                    ) : (
-                                        ['Academic', 'Sports', 'Cultural', 'Notices'].map((cat, idx) => (
-                                            <button 
-                                                key={idx}
-                                                className={`filter-btn ${selectedTag === cat ? 'active' : ''}`}
-                                                onClick={() => handleTagChange(cat)}
-                                            >
-                                                {cat}
                                             </button>
                                         ))
                                     )}
@@ -110,9 +108,9 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
                                 <div key={item.id || index} className="col-lg-4 col-md-6">
                                     <div className="news-card-v2 h-100 d-flex flex-column bg-white border rounded-4 overflow-hidden shadow-sm">
                                         <div className="news-thumb-wrapper position-relative" style={{ height: '220px', overflow: 'hidden' }}>
-                                            <img 
-                                                src={item.feature_image || '/images/news/news1.jpg'} 
-                                                alt={item.title} 
+                                            <img
+                                                src={item.feature_image || '/images/news/news1.jpg'}
+                                                alt={item.title}
                                                 className="w-100 h-100"
                                                 style={{ objectFit: 'cover' }}
                                             />
@@ -123,8 +121,8 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
                                             <h4 className="news-title-v2 fw-bold text-navy mb-2">{item.title}</h4>
                                             <p className="news-excerpt text-muted small flex-grow-1">{item.excerpt}</p>
                                             <div className="news-card-footer border-top pt-3 mt-3 d-flex align-items-center justify-content-between">
-                                                <a 
-                                                    href={item.slug ? `/post/${item.slug}` : '#'} 
+                                                <a
+                                                    href={item.slug ? `/post/${item.slug}` : '#'}
                                                     className="btn p-0 news-link-btn fw-bold"
                                                     style={{ color: 'var(--wine)' }}
                                                 >
@@ -149,7 +147,7 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
                         <nav className="d-flex justify-content-center">
                             <ul className="pagination-custom list-unstyled d-flex align-items-center gap-2">
                                 <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                                    <button 
+                                    <button
                                         className="page-link rounded-circle border-0 shadow-sm"
                                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                         disabled={currentPage === 1}
@@ -163,7 +161,7 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
                                     const pageNum = pIndex + 1;
                                     return (
                                         <li key={pageNum} className={`page-item ${currentPage === pageNum ? 'active' : ''}`}>
-                                            <button 
+                                            <button
                                                 className={`page-link rounded-circle border-0 shadow-sm fw-bold ${currentPage === pageNum ? 'bg-navy text-white' : 'bg-light text-navy'}`}
                                                 onClick={() => setCurrentPage(pageNum)}
                                                 style={{ width: '40px', height: '40px', display: 'grid', placeItems: 'center' }}
@@ -175,7 +173,7 @@ export default function NewsEvents({ newsEvents = [], tags = [] }) {
                                 })}
 
                                 <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                                    <button 
+                                    <button
                                         className="page-link rounded-circle border-0 shadow-sm"
                                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                                         disabled={currentPage === totalPages}

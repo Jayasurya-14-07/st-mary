@@ -1325,6 +1325,26 @@ footer h5 {
     color: var(--gold-light);
     margin-top: 5px;
     font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.footer-contact-row.align-items-center {
+    align-items: center;
+}
+
+.footer-contact-row.align-items-center i {
+    margin-top: 0;
+}
+
+.footer-contact-row a {
+    transition: var(--transition);
+}
+
+.footer-contact-row a:hover {
+    color: var(--gold-light) !important;
 }
 
 .school-details-list {
