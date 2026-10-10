@@ -34,10 +34,26 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->profile()
             ->colors([
-                'primary' => '#292962',
+                'primary' => '#8d2638',
             ])
-            ->brandLogo(asset('frontend/images/favicon.png'))
-            ->favicon(asset('frontend/images/favicon.png'))
+            ->brandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('3.5rem')
+            ->favicon(asset('images/logo.png'))
+            ->sidebarCollapsibleOnDesktop()
+            ->navigationGroups([
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('CMS'),
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('Sections'),
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('Galleries'),
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('Forms'),
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('Auth'),
+                \Filament\Navigation\NavigationGroup::make()
+                    ->label('Filament Shield'),
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -69,6 +85,7 @@ class AdminPanelProvider extends PanelProvider
                 Css::make('curator-plugin', asset('css/curator.css?v=' . time())),
                 Css::make('photo-gallery-admin', asset('css/photo-gallery-admin.css?v=' . time())),
                 Css::make('media-admin', asset('css/media-admin.css?v=' . time())),
+                Css::make('admin-custom', asset('css/admin-custom.css?v=' . time())),
             ]);
     }
 }

@@ -1,0 +1,33 @@
+/* Custom Filament Admin Styles */
+.fi-logo {
+    height: 3.5rem !important;
+    max-height: 4rem !important;
+    object-fit: contain !important;
+}
+
+/* Fix dual logo display on login page by respecting dark/light theme */
+:root:not(.dark) .fi-logo-dark,
+html:not(.dark) .fi-logo-dark {
+    display: none !important;
+}
+
+.dark .fi-logo-light {
+    display: none !important;
+}
+
+.fi-simple-page .fi-logo {
+    height: 5rem !important;
+    max-height: 5.5rem !important;
+    object-fit: contain !important;
+    margin: 0 auto 1.5rem auto !important;
+}
+
+.fi-sidebar-header {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.fi-sidebar-header .fi-logo {
+    height: 3rem !important;
+    object-fit: contain !important;
+}

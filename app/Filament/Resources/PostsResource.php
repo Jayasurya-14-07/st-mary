@@ -45,6 +45,7 @@ class PostsResource extends Resource
     protected static string $icon = 'heroicon-o-document-text';
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
     protected static string|\UnitEnum|null $navigationGroup = 'CMS';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {
@@ -83,6 +84,29 @@ class PostsResource extends Resource
                     ->searchable()
                     ->preload()
                     ->helperText('Optional tag for News & Events posts'),
+
+                Forms\Components\Select::make('club_theme')
+                    ->label('Club Card Theme & Color')
+                    ->options([
+                        'card-art'      => 'Art Theme (Wine / Palette)',
+                        'card-eco'      => 'Eco Theme (Green / Seedling)',
+                        'card-science'  => 'Science Theme (Navy / Flask)',
+                        'card-heritage' => 'Heritage Theme (Gold / Landmark)',
+                        'card-language' => 'Language Theme (Purple / Comments)',
+                        'card-math'     => 'Math Theme (Teal / Formula)',
+                        'card-sports'   => 'Sports Theme (Amber / Trophy)',
+                        'card-value'    => 'Value Education Theme (Rose / Heart)',
+                    ])
+                    ->nullable()
+                    ->searchable()
+                    ->helperText('Select card color theme if post category is Our Clubs'),
+
+                Forms\Components\TextInput::make('fa_icon')
+                    ->label('FontAwesome Icon Class')
+                    ->placeholder('fa-palette')
+                    ->nullable()
+                    ->maxLength(255)
+                    ->helperText('e.g. fa-palette, fa-seedling, fa-flask, fa-trophy (Defaults to selected theme icon if blank)'),
 
                 Forms\Components\TextInput::make('author')
                     ->label('Subtitle')

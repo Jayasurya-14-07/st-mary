@@ -26,8 +26,9 @@ class PhotoGalleryResource extends Resource
 {
     protected static ?string $model = PhotoGallery::class;
     protected static string $icon = 'heroicon-o-photo';
-    protected static string|\UnitEnum|null $navigationGroup = 'Gallery';
+    protected static string|\UnitEnum|null $navigationGroup = 'Galleries';
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-photo';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

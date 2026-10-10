@@ -23,6 +23,7 @@ class CategoryResource extends Resource
     protected static ?string $model = Category::class;
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-tag';
     protected static string|\UnitEnum|null $navigationGroup = 'CMS';
+    protected static ?int $navigationSort = 4;
     protected static string|\Illuminate\Contracts\Support\Htmlable|null $navigationBadgeTooltip = 'The number of categories';
     public static function getNavigationBadge(): ?string
     {

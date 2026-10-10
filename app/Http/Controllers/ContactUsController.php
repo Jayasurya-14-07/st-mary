@@ -3,51 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\FlashNews;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use Inertia\Inertia;
 
 class ContactUsController extends Controller
 {
     public function contactUs()
     {
-        return view('frontend.pages.contactUs');
+        $flashNews = FlashNews::where('status', 1)
+            ->orderBy('publish_date', 'desc')
+            ->get();
+
+        return Inertia::render('Contact', [
+            'flashNews' => $flashNews,
+        ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:20',
-            'subject' => 'nullable|string|max:255',
-            'message' => 'nullable|string',
-            'g-recaptcha-response' => 'required',
+        $validated = $request->validate([
+            'name'    => 'required|string|max:100',
+            'email'   => 'required|email|max:100',
+            'phone'   => 'nullable|string|regex:/^[0-9]+$/|max:15',
+            'subject' => 'nullable|string|max:100',
+            'message' => 'required|string|max:500',
         ]);
 
-        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => env('RECAPTCHA_SECRET_KEY', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'),
-            'response' => $request->get('g-recaptcha-response'),
-            'remoteip' => $request->ip(),
-        ]);
+        Contact::create($validated);
 
-        if (!$response->json('success')) {
+        if ($request->wantsJson()) {
             return response()->json([
-                'status' => 'false',
-                'message' => 'reCAPTCHA verification failed. Please try again.'
-            ], 422);
+                'status'  => 'true',
+                'message' => 'Your message has been sent successfully!'
+            ]);
         }
 
-        Contact::create($request->only([
-            'name',
-            'email',
-            'phone',
-            'subject',
-            'message',
-        ]));
-
-        return response()->json([
-            'status' => 'true', 
-            'message' => 'Your message has been sent successfully!'
-        ]);
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
 }

@@ -36,7 +36,7 @@ function normalizeMediaUrl(url) {
  * BlockRenderer parses and renders dynamic Filament block content arrays stored in DB.
  * Handles headings, rich text, images, custom grids, videos, accordions, tabs, etc.
  */
-export default function BlockRenderer({ blocks = [] }) {
+export default function BlockRenderer({ blocks = [], textCenter = false }) {
     const [activeTabs, setActiveTabs] = useState({});
     const [activeAccordions, setActiveAccordions] = useState({});
 
@@ -60,7 +60,7 @@ export default function BlockRenderer({ blocks = [] }) {
     };
 
     return (
-        <div className="block-renderer-content">
+        <div className={`block-renderer-content ${textCenter ? 'text-center' : ''}`}>
             {blocks.map((block, index) => {
                 if (!block) return null;
                 const type = block.type || '';
@@ -74,8 +74,8 @@ export default function BlockRenderer({ blocks = [] }) {
                     case 'heading': {
                         const Tag = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(level) ? level : 'h3';
                         return (
-                            <div key={index} className="block-item mb-3">
-                                <Tag className="section-heading fw-bold text-navy">{content}</Tag>
+                            <div key={index} className={`block-item mb-3 ${textCenter ? 'text-center' : ''}`}>
+                                <Tag className={`section-heading fw-bold text-navy ${textCenter ? 'text-center' : ''}`}>{content}</Tag>
                             </div>
                         );
                     }
@@ -85,9 +85,9 @@ export default function BlockRenderer({ blocks = [] }) {
                     case 'TipTap Editor':
                     case 'tiptap': {
                         return (
-                            <div key={index} className="block-item mb-4">
+                            <div key={index} className={`block-item mb-2 ${textCenter ? 'text-center' : ''}`}>
                                 <div 
-                                    className="content-text tiptap-content"
+                                    className={`content-text tiptap-content ${textCenter ? 'text-center' : ''}`}
                                     dangerouslySetInnerHTML={{ __html: typeof content === 'string' ? content : JSON.stringify(content) }}
                                 />
                             </div>
@@ -98,7 +98,7 @@ export default function BlockRenderer({ blocks = [] }) {
                         if (!url) return null;
                         const imgUrl = normalizeMediaUrl(url);
                         return (
-                            <div key={index} className="block-item mb-4">
+                            <div key={index} className="block-item mb-2">
                                 <a href={imgUrl} target="_blank" rel="noopener noreferrer" className="popup-image d-block">
                                     <img src={imgUrl} alt={alt} className="img-fluid rounded shadow-sm" />
                                 </a>
@@ -114,7 +114,7 @@ export default function BlockRenderer({ blocks = [] }) {
                         if (columns === '4') colClass = 'col-md-3';
 
                         return (
-                            <div key={index} className="block-item mb-4">
+                            <div key={index} className="block-item mb-2">
                                 <div className="row g-3">
                                     {items.map((item, iIndex) => (
                                         <div key={iIndex} className={colClass}>

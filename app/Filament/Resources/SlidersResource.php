@@ -23,7 +23,8 @@ class SlidersResource extends Resource
     protected static ?string $model = Sliders::class;
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-presentation-chart-bar';
-    protected static string|\UnitEnum|null $navigationGroup = 'CMS';
+    protected static string|\UnitEnum|null $navigationGroup = 'Sections';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

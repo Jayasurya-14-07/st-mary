@@ -21,7 +21,8 @@ class VideoGalleryResource extends Resource
     protected static ?string $model = VideoGallery::class;
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-video-camera';
-    protected static string|\UnitEnum|null $navigationGroup = 'Gallery';
+    protected static string|\UnitEnum|null $navigationGroup = 'Galleries';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {
@@ -30,20 +31,25 @@ class VideoGalleryResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255)
-                    ->placeholder('Enter sample title'),
-                Forms\Components\Repeater::make('link')
-                    ->components([
-                        Forms\Components\TextInput::make('url')
-                            ->url()
-                            ->required()
-                            ->placeholder('Enter a link'),
-                    ])
-                    ->addable()
-                    ->deletable()
-                    ->reorderable()
-                    ->columnSpanFull()
-                    ->minItems(1),
-                            ]);
+                    ->placeholder('Enter Video Title'),
+                Forms\Components\TextInput::make('link')
+                    ->label('YouTube Video Link / URL')
+                    ->url()
+                    ->required()
+                    ->placeholder('https://youtu.be/wnHW6o8WMas')
+                    ->formatStateUsing(fn ($state) => is_array($state) ? ($state[0]['url'] ?? $state['url'] ?? json_encode($state)) : $state),
+                Forms\Components\DatePicker::make('publish_date')
+                    ->label('Publish Date')
+                    ->default(now())
+                    ->required(),
+                Forms\Components\TextInput::make('order_by')
+                    ->numeric()
+                    ->default(0)
+                    ->label('Order'),
+                Forms\Components\Toggle::make('status')
+                    ->label('Published')
+                    ->default(true),
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -54,29 +60,29 @@ class VideoGalleryResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('link')
-                    ->formatStateUsing(fn ($state) => is_array($state)
-                        ? collect($state)->map(function ($item) {
-                            $url = is_array($item) ? ($item['url'] ?? '') : $item;
-                            return "<a href='{$url}' target='_blank' style='color: #292962; text-decoration: underline;'>{$url}</a>";
-                        })->implode('<br>')
-                        : $state
-                    )
+                    ->label('YouTube Link')
+                    ->formatStateUsing(function ($state) {
+                        $url = is_array($state)
+                            ? ($state[0]['url'] ?? $state['url'] ?? json_encode($state))
+                            : $state;
+                        return "<a href='{$url}' target='_blank' style='color: #292962; text-decoration: underline;'>{$url}</a>";
+                    })
                     ->html()
-                    ->limit(100)
-                    ->tooltip('Click to open link')
+                    ->limit(60)
                     ->copyable(),
-
-              
+                Tables\Columns\TextColumn::make('publish_date')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\ToggleColumn::make('status')
+                    ->label('Status'),
+                Tables\Columns\TextColumn::make('order_by')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc')
+            ->defaultSort('order_by', 'asc')
             ->filters([
                 //
             ])

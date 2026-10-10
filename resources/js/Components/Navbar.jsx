@@ -1,10 +1,39 @@
 import { useEffect, useRef } from 'react';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, usePage, router } from '@inertiajs/react';
 
 export default function Navbar() {
     const navRef = useRef(null);
     const { url: currentUrl = '/', props = {} } = usePage();
     const dynamicMenus = props.menus || [];
+
+    const closeMobileOffcanvas = () => {
+        const offcanvasEl = document.getElementById('mobileOffcanvas');
+        if (!offcanvasEl) return;
+
+        try {
+            if (window.bootstrap && window.bootstrap.Offcanvas) {
+                const instance = window.bootstrap.Offcanvas.getInstance(offcanvasEl) || new window.bootstrap.Offcanvas(offcanvasEl);
+                if (instance) {
+                    instance.hide();
+                    return;
+                }
+            }
+        } catch (e) {
+            // fallback below
+        }
+
+        const closeBtn = offcanvasEl.querySelector('.btn-close');
+        if (closeBtn) {
+            closeBtn.click();
+        }
+    };
+
+    useEffect(() => {
+        const unbind = router.on('navigate', () => {
+            closeMobileOffcanvas();
+        });
+        return () => unbind();
+    }, []);
 
     useEffect(() => {
         const nav = navRef.current;
@@ -19,7 +48,7 @@ export default function Navbar() {
     const isPathActive = (menuUrl) => {
         if (!menuUrl || menuUrl === '#' || menuUrl === 'javascript:void(0);') return false;
         const currentPath = currentUrl.replace(/\/$/, '') || '/';
-        
+
         let targetPath = menuUrl;
         if (menuUrl.startsWith('http://') || menuUrl.startsWith('https://')) {
             try {
@@ -55,11 +84,11 @@ export default function Navbar() {
                     <Link className="navbar-brand py-0" href="/">
                         <img src="/images/logo.png" alt="St. Mary's Convent School, Chhallan, Ramkot" style={{ height: '100px', objectFit: 'contain' }} />
                     </Link>
-                    <button 
-                        className="navbar-toggler border-0 shadow-none d-lg-none" 
-                        type="button" 
+                    <button
+                        className="navbar-toggler border-0 shadow-none d-lg-none"
+                        type="button"
                         data-bs-toggle="offcanvas"
-                        data-bs-target="#mobileOffcanvas" 
+                        data-bs-target="#mobileOffcanvas"
                         aria-controls="mobileOffcanvas"
                     >
                         <i className="fa-solid fa-bars fs-1" style={{ color: 'var(--navy)' }}></i>
@@ -83,11 +112,11 @@ export default function Navbar() {
                                     if (hasChildren) {
                                         return (
                                             <li key={menu.id} className="nav-item dropdown">
-                                                <a 
-                                                    className={`nav-link dropdown-toggle ${activeClass}`} 
-                                                    href={menu.url || '#'} 
-                                                    role="button" 
-                                                    data-bs-toggle="dropdown" 
+                                                <a
+                                                    className={`nav-link dropdown-toggle ${activeClass}`}
+                                                    href={menu.url || '#'}
+                                                    role="button"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false"
                                                     target={menu.target || '_self'}
                                                 >
@@ -101,8 +130,8 @@ export default function Navbar() {
                                                         if (childHasChildren) {
                                                             return (
                                                                 <li key={child.id} className="dropdown-submenu">
-                                                                    <a 
-                                                                        className={`dropdown-item dropdown-toggle ${childActive}`} 
+                                                                    <a
+                                                                        className={`dropdown-item dropdown-toggle ${childActive}`}
                                                                         href={child.url || '#'}
                                                                         target={child.target || '_self'}
                                                                     >
@@ -111,8 +140,8 @@ export default function Navbar() {
                                                                     <ul className="dropdown-menu">
                                                                         {child.all_children.map((subChild) => (
                                                                             <li key={subChild.id}>
-                                                                                <a 
-                                                                                    className={`dropdown-item ${isPathActive(subChild.url) ? 'active' : ''}`} 
+                                                                                <a
+                                                                                    className={`dropdown-item ${isPathActive(subChild.url) ? 'active' : ''}`}
                                                                                     href={subChild.url || '#'}
                                                                                     target={subChild.target || '_self'}
                                                                                 >
@@ -127,8 +156,8 @@ export default function Navbar() {
 
                                                         return (
                                                             <li key={child.id}>
-                                                                <a 
-                                                                    className={`dropdown-item ${childActive}`} 
+                                                                <a
+                                                                    className={`dropdown-item ${childActive}`}
                                                                     href={child.url || '#'}
                                                                     target={child.target || '_self'}
                                                                 >
@@ -144,8 +173,8 @@ export default function Navbar() {
 
                                     return (
                                         <li key={menu.id} className="nav-item">
-                                            <a 
-                                                className={`nav-link ${activeClass}`} 
+                                            <a
+                                                className={`nav-link ${activeClass}`}
                                                 href={menu.url || '#'}
                                                 target={menu.target || '_self'}
                                             >
@@ -201,12 +230,12 @@ export default function Navbar() {
                 </div>
                 <div className="offcanvas-body px-4 py-4">
                     <div className="d-lg-none mb-4 pb-4 border-bottom">
-                        <a className="btn btn-premium w-100 py-3 d-flex justify-content-center" href="javascript:void(0);">Admission Enquiry</a>
+                        <Link className="btn btn-premium w-100 py-3 d-flex justify-content-center" href="/contact" onClick={closeMobileOffcanvas}>Admission Enquiry</Link>
                     </div>
                     <h6 className="text-uppercase text-muted fw-bold mb-3" style={{ letterSpacing: '0.1em', fontSize: '0.75rem' }}>Main Navigation</h6>
                     <ul className="navbar-nav flex-column mb-4 gap-2">
                         <li className="nav-item">
-                            <Link className="nav-link fw-bold text-dark fs-5" href="/" data-bs-dismiss="offcanvas">
+                            <Link className="nav-link fw-bold text-dark fs-5" href="/" onClick={closeMobileOffcanvas}>
                                 Home
                             </Link>
                         </li>
@@ -219,27 +248,66 @@ export default function Navbar() {
                                 if (hasChildren) {
                                     return (
                                         <li key={menu.id} className="nav-item">
-                                            <a 
+                                            <a
                                                 className="nav-link fw-bold text-dark fs-5 d-flex justify-content-between align-items-center"
-                                                data-bs-toggle="collapse" 
-                                                href={`#${dropdownId}`} 
+                                                data-bs-toggle="collapse"
+                                                href={`#${dropdownId}`}
                                                 role="button"
+                                                aria-expanded="false"
                                             >
                                                 {menu.name} <i className="fa-solid fa-chevron-down fs-6"></i>
                                             </a>
                                             <div className="collapse ps-3 mt-1" id={dropdownId}>
                                                 <ul className="nav flex-column gap-1 border-start ps-2">
-                                                    {menu.all_children.map((child) => (
-                                                        <li key={child.id} className="nav-item">
-                                                            <a 
-                                                                className="nav-link text-muted py-1" 
-                                                                href={child.url || '#'} 
-                                                                data-bs-dismiss="offcanvas"
-                                                            >
-                                                                {child.name}
-                                                            </a>
-                                                        </li>
-                                                    ))}
+                                                    {menu.all_children.map((child) => {
+                                                        const childHasChildren = Array.isArray(child.all_children) && child.all_children.length > 0;
+                                                        const subDropdownId = `mobileSubDropdown-${child.id}`;
+
+                                                        if (childHasChildren) {
+                                                            return (
+                                                                <li key={child.id} className="nav-item">
+                                                                    <a
+                                                                        className="nav-link text-muted py-1 d-flex justify-content-between align-items-center small"
+                                                                        data-bs-toggle="collapse"
+                                                                        href={`#${subDropdownId}`}
+                                                                        role="button"
+                                                                        aria-expanded="false"
+                                                                    >
+                                                                        {child.name} <i className="fa-solid fa-chevron-down small"></i>
+                                                                    </a>
+                                                                    <div className="collapse ps-2 mt-1" id={subDropdownId}>
+                                                                        <ul className="nav flex-column gap-1 border-start ps-2">
+                                                                            {child.all_children.map((subChild) => (
+                                                                                <li key={subChild.id} className="nav-item">
+                                                                                    <a
+                                                                                        className="nav-link text-muted py-1 small"
+                                                                                        href={subChild.url || '#'}
+                                                                                        target={subChild.target || '_self'}
+                                                                                        onClick={closeMobileOffcanvas}
+                                                                                    >
+                                                                                        {subChild.name}
+                                                                                    </a>
+                                                                                </li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </div>
+                                                                </li>
+                                                            );
+                                                        }
+
+                                                        return (
+                                                            <li key={child.id} className="nav-item">
+                                                                <a
+                                                                    className="nav-link text-muted py-1"
+                                                                    href={child.url || '#'}
+                                                                    target={child.target || '_self'}
+                                                                    onClick={closeMobileOffcanvas}
+                                                                >
+                                                                    {child.name}
+                                                                </a>
+                                                            </li>
+                                                        );
+                                                    })}
                                                 </ul>
                                             </div>
                                         </li>
@@ -248,10 +316,11 @@ export default function Navbar() {
 
                                 return (
                                     <li key={menu.id} className="nav-item">
-                                        <a 
-                                            className="nav-link fw-bold text-dark fs-5" 
-                                            href={menu.url || '#'} 
-                                            data-bs-dismiss="offcanvas"
+                                        <a
+                                            className="nav-link fw-bold text-dark fs-5"
+                                            href={menu.url || '#'}
+                                            target={menu.target || '_self'}
+                                            onClick={closeMobileOffcanvas}
                                         >
                                             {menu.name}
                                         </a>
@@ -267,17 +336,17 @@ export default function Navbar() {
                                     </a>
                                     <div className="collapse ps-3 mt-1" id="mobileAboutDropdown">
                                         <ul className="nav flex-column gap-1 border-start ps-2">
-                                            <li className="nav-item"><a className="nav-link text-muted py-1" href="#story" data-bs-dismiss="offcanvas">About the School</a></li>
-                                            <li className="nav-item"><a className="nav-link text-muted py-1" href="#messages" data-bs-dismiss="offcanvas">Our Principals</a></li>
-                                            <li className="nav-item"><a className="nav-link text-muted py-1" href="#messages" data-bs-dismiss="offcanvas">Leadership Team</a></li>
-                                            <li className="nav-item"><a className="nav-link text-muted py-1" href="#messages" data-bs-dismiss="offcanvas">Our Staff</a></li>
+                                            <li className="nav-item"><a className="nav-link text-muted py-1" href="#story" onClick={closeMobileOffcanvas}>About the School</a></li>
+                                            <li className="nav-item"><a className="nav-link text-muted py-1" href="#messages" onClick={closeMobileOffcanvas}>Our Principals</a></li>
+                                            <li className="nav-item"><a className="nav-link text-muted py-1" href="#messages" onClick={closeMobileOffcanvas}>Leadership Team</a></li>
+                                            <li className="nav-item"><a className="nav-link text-muted py-1" href="#messages" onClick={closeMobileOffcanvas}>Our Staff</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li className="nav-item"><a className="nav-link fw-bold text-dark fs-5" href="#clubs" data-bs-dismiss="offcanvas">Clubs</a></li>
-                                <li className="nav-item"><a className="nav-link fw-bold text-dark fs-5" href="#news" data-bs-dismiss="offcanvas">News &amp; Events</a></li>
+                                <li className="nav-item"><a className="nav-link fw-bold text-dark fs-5" href="#clubs" onClick={closeMobileOffcanvas}>Clubs</a></li>
+                                <li className="nav-item"><a className="nav-link fw-bold text-dark fs-5" href="#news" onClick={closeMobileOffcanvas}>News &amp; Events</a></li>
                                 <li className="nav-item">
-                                    <Link className="nav-link fw-bold text-dark fs-5" href="/gallery" data-bs-dismiss="offcanvas">
+                                    <Link className="nav-link fw-bold text-dark fs-5" href="/gallery" onClick={closeMobileOffcanvas}>
                                         Gallery
                                     </Link>
                                 </li>
@@ -285,7 +354,7 @@ export default function Navbar() {
                         )}
 
                         <li className="nav-item">
-                            <Link className="nav-link fw-bold text-dark fs-5" href="/contact" data-bs-dismiss="offcanvas">
+                            <Link className="nav-link fw-bold text-dark fs-5" href="/contact" onClick={closeMobileOffcanvas}>
                                 Contact
                             </Link>
                         </li>

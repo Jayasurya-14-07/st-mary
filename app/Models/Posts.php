@@ -29,6 +29,8 @@ class Posts extends Model
         'feature_image',
         'author',
         'tag_id',
+        'club_theme',
+        'fa_icon',
         'content',
         'status',
         'order_by',

@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function Footer() {
     return (
         <footer>
@@ -5,9 +7,9 @@ export default function Footer() {
                 <div className="row g-4 justify-content-between">
                     {/* Column 1: Brand & About */}
                     <div className="col-lg-4 col-md-6">
-                        <a className="brand d-block mb-4" href="#home">
+                        <Link className="brand d-block mb-4" href="/">
                             <img src="/images/logo-wide-light.png" alt="St. Mary’s Convent School, Chhallan, Ramkot" style={{ maxWidth: '280px', height: 'auto' }} />
-                        </a>
+                        </Link>
                         <p style={{ fontSize: '0.95rem', lineHeight: '1.7', color: 'rgba(255,255,255,0.75)', maxWidth: '350px' }}>
                             <strong className="footer-motto">“Unit of Diocese of Jammu-Srinagar Education Society (DJSES)”</strong>
                         </p>
@@ -16,26 +18,26 @@ export default function Footer() {
                     {/* Column 2: Explore Links */}
                     <div className="col-lg-2 col-md-6">
                         <h5>Explore</h5>
-                        <a href="javascript:void(0);" className="footer-link">About the School</a>
-                        <a href="javascript:void(0);" className="footer-link">Our Principals</a>
-                        <a href="javascript:void(0);" className="footer-link">Our Staff</a>
-                        <a href="javascript:void(0);" className="footer-link">Student Life</a>
-                        <a href="javascript:void(0);" className="footer-link">Academics</a>
-                        <a href="javascript:void(0);" className="footer-link">Activities</a>
-                        <a href="javascript:void(0);" className="footer-link">Achievements</a>
+                        <Link href="/#story" className="footer-link">About the School</Link>
+                        <Link href="/#messages" className="footer-link">Our Principals</Link>
+                        <Link href="/#messages" className="footer-link">Our Staff</Link>
+                        <Link href="/#clubs" className="footer-link">Student Life</Link>
+                        <Link href="/facilities" className="footer-link">Academics</Link>
+                        <Link href="/our-clubs" className="footer-link">Activities</Link>
+                        <Link href="/gallery" className="footer-link">Achievements</Link>
                     </div>
 
                     {/* Column 3: Quick Links */}
                     <div className="col-lg-2 col-md-6">
                         <h5>Quick Links</h5>
-                        <a href="javascript:void(0);" className="footer-link">About Us</a>
-                        <a href="javascript:void(0);" className="footer-link">Affiliation</a>
-                        <a href="javascript:void(0);" className="footer-link">Clubs</a>
-                        <a href="javascript:void(0);" className="footer-link">Sports</a>
-                        <a href="javascript:void(0);" className="footer-link">Facilities</a>
-                        <a href="javascript:void(0);" className="footer-link">News &amp; Events</a>
-                        <a href="javascript:void(0);" className="footer-link">Gallery</a>
-                        <a href="javascript:void(0);" className="footer-link">Contact Us</a>
+                        <Link href="/#story" className="footer-link">About Us</Link>
+                        <Link href="javascript:void(0);" className="footer-link">Affiliation</Link>
+                        <Link href="/our-clubs" className="footer-link">Clubs</Link>
+                        <Link href="javascript:void(0);" className="footer-link">Sports</Link>
+                        <Link href="/facilities" className="footer-link">Facilities</Link>
+                        <Link href="/news-events" className="footer-link">News &amp; Events</Link>
+                        <Link href="/gallery" className="footer-link">Gallery</Link>
+                        <Link href="/contact" className="footer-link">Contact Us</Link>
                     </div>
 
                     {/* Column 4: Address */}
@@ -49,11 +51,15 @@ export default function Footer() {
                         </div>
                         <div className="footer-contact-row">
                             <i className="fa-solid fa-phone"></i>
-                            <div>+91 8082171498</div>
+                            <div>
+                                <a href="tel:+918082171498" className="text-white-50 text-decoration-none">+91 8082171498</a>
+                            </div>
                         </div>
                         <div className="footer-contact-row">
                             <i className="fa-solid fa-envelope"></i>
-                            <div>smcsramkot@gmail.com</div>
+                            <div>
+                                <a href="mailto:school@smcsramkot.in" className="text-white-50 text-decoration-none">school@smcsramkot.in</a>
+                            </div>
                         </div>
                     </div>
                 </div>

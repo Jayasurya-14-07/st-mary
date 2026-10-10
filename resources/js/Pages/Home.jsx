@@ -16,7 +16,7 @@ import Footer from '../Components/Footer';
 import FloatingSocial from '../Components/FloatingSocial';
 import ImageModal from '../Components/ImageModal';
 
-export default function Home({ sliders = null, sliderImages = [], notices = [], flashNews = [], newsEvents = [], galleryImages = [], videos = [], aboutus = null, facilites = [], testimoinals = [], siteTitle = null }) {
+export default function Home({ sliders = null, sliderImages = [], notices = [], flashNews = [], newsEvents = [], ourClubs = [], homeGalleries = [], galleryImages = [], videos = [], aboutus = null, vision = null, mission = null, missionFocus = null, facilites = null, facilitiesSection = null, belowSliderFacilities = [], testimoinals = [], siteTitle = null, leadershipMessages = [] }) {
     useEffect(() => {
         // Reveal-on-scroll intersection observer
         const observer = new IntersectionObserver((entries) => {
@@ -57,13 +57,13 @@ export default function Home({ sliders = null, sliderImages = [], notices = [], 
 
             <NoticeBar notices={notices || flashNews} />
             <Navbar />
-            <HeroSlider sliders={sliders} sliderImages={sliderImages} />
+            <HeroSlider sliders={sliders} sliderImages={sliderImages} belowSliderFacilities={belowSliderFacilities} />
             <AboutSection aboutus={aboutus} />
-            <LeadershipMessages />
-            <FacilitiesSection />
-            <VisionMissionSection />
-            <ClubsSection />
-            <PhotoGallerySection galleryImages={galleryImages} />
+            <LeadershipMessages leadershipMessages={leadershipMessages} />
+            <FacilitiesSection facilitiesSection={facilitiesSection || facilites} />
+            <VisionMissionSection vision={vision} mission={mission} missionFocus={missionFocus} />
+            <ClubsSection ourClubs={ourClubs} />
+            <PhotoGallerySection homeGalleries={homeGalleries} galleryImages={galleryImages} />
             <NewsEventsSection newsEvents={newsEvents} />
             <VideoGallerySection videos={videos} />
             <Footer />

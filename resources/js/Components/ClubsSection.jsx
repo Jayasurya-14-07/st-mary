@@ -1,5 +1,5 @@
-export default function ClubsSection() {
-    const clubs = [
+export default function ClubsSection({ ourClubs = [] }) {
+    const defaultClubs = [
         { card: 'card-art', icon: 'icon-art', fa: 'fa-palette', title: 'Art Club', text: 'Encourages imagination, creativity, and artistic expression through painting, sketching, and crafts.' },
         { card: 'card-eco', icon: 'icon-eco', fa: 'fa-seedling', title: 'Eco Club', text: 'Promotes environmental awareness, sustainability, and responsible citizenship.' },
         { card: 'card-science', icon: 'icon-science', fa: 'fa-flask', title: 'EVS & Science Club', text: 'Develops scientific curiosity through exploration, interactive experiments, and innovation.' },
@@ -10,6 +10,8 @@ export default function ClubsSection() {
         { card: 'card-value', icon: 'icon-value', fa: 'fa-hand-holding-heart', title: 'Value Education Club', text: 'Nurtures moral character, empathy, respect, responsibility, and moral values.' },
     ];
 
+    const displayClubs = (ourClubs && ourClubs.length > 0) ? ourClubs : defaultClubs;
+
     return (
         <section className="section bg-white" id="clubs">
             <div className="container">
@@ -19,17 +21,31 @@ export default function ClubsSection() {
                         <h2 className="section-title mb-0">Our Clubs</h2>
                         <div className="rule mt-3"></div>
                     </div>
+                    {displayClubs && displayClubs.length > 4 && (
+                        <div className="col-lg-5 text-lg-end mt-3 mt-lg-0">
+                            <a href="/our-clubs" className="btn btn-outline-premium">View All Clubs</a>
+                        </div>
+                    )}
                 </div>
                 <div className="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-4 reveal">
-                    {clubs.map((club, i) => (
-                        <div key={i} className="col">
-                            <div className={`club-card ${club.card} h-100 d-flex flex-column justify-content-between`}>
+                    {displayClubs.map((club, i) => (
+                        <div key={club.id || i} className="col">
+                            <div className={`club-card ${club.card || 'card-art'} h-100 d-flex flex-column justify-content-between`}>
                                 <div>
-                                    <div className={`club-icon-wrap ${club.icon}`}><i className={`fa-solid ${club.fa}`}></i></div>
+                                    <div className={`club-icon-wrap ${club.icon || 'icon-art'}`}>
+                                        <i className={`fa-solid ${club.fa || 'fa-palette'}`}></i>
+                                    </div>
                                     <h4 className="club-title">{club.title}</h4>
-                                    <p className="club-text">{club.text}</p>
+                                    <p className="club-text">{club.excerpt || club.text}</p>
                                 </div>
-                                <div><a href="#clubs" className="club-read-more">Read More <i className="fa-solid fa-arrow-right"></i></a></div>
+                                <div>
+                                    <a 
+                                        href={club.slug ? `/post/${club.slug}` : '#clubs'} 
+                                        className="club-read-more"
+                                    >
+                                        Read More <i className="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     ))}

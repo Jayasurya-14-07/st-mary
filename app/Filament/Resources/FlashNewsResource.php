@@ -27,7 +27,8 @@ class FlashNewsResource extends Resource
     protected static ?string $pluralModelLabel = 'Notices';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-megaphone';
-    protected static string|\UnitEnum|null $navigationGroup = 'CMS';
+    protected static string|\UnitEnum|null $navigationGroup = 'Sections';
+    protected static ?int $navigationSort = 6;
 
     public static function form(Schema $schema): Schema
     {
@@ -49,8 +50,9 @@ class FlashNewsResource extends Resource
                     ->readOnly(),
 
                 Forms\Components\TextInput::make('link')
-                    ->url()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->placeholder('e.g. /contact or https://example.com')
+                    ->helperText('Internal page (e.g. /contact, /facilities) or full URL (https://...)'),
                 Toggle::make('open_in_new_tab')
                     ->label('Open in new tab')
                     ->default(false),

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
+import { Link } from '@inertiajs/react';
 
-export default function HeroSlider({ sliders = null, sliderImages = [] }) {
+export default function HeroSlider({ sliders = null, sliderImages = [], belowSliderFacilities = [] }) {
     // Determine dynamic list of images from DB
     let imagesList = [];
 
@@ -27,6 +28,17 @@ export default function HeroSlider({ sliders = null, sliderImages = [] }) {
 
     imagesList = imagesList.filter(Boolean);
     const totalSlides = imagesList.length;
+
+    const defaultStats = [
+        { title: 'Smart Board Classrooms', slug: 'smart-board-classrooms', link: '/facilities#smart-board-classrooms' },
+        { title: 'Computer Lab', slug: 'computer-lab', link: '/facilities#computer-lab' },
+        { title: 'Science Laboratory', slug: 'science-laboratory', link: '/facilities#science-laboratory' },
+        { title: 'Playground', slug: 'playground', link: '/facilities#playground' },
+    ];
+
+    const displayStats = (belowSliderFacilities && belowSliderFacilities.length > 0)
+        ? belowSliderFacilities
+        : defaultStats;
 
     useEffect(() => {
         if (totalSlides === 0) return;
@@ -116,17 +128,14 @@ export default function HeroSlider({ sliders = null, sliderImages = [] }) {
                     </div>
                 </div>
                 <div className="row g-2 mt-5 hero-stats">
-                    {[
-                        { label: 'Computer Lab', text: 'Read More' },
-                        { label: 'Nursery–X', text: 'Read More' },
-                        { label: 'Smart Board', text: 'Read More' },
-                        { label: 'Playground', text: 'Read More' },
-                    ].map((stat, i) => (
-                        <div key={i} className="col-6 col-md-3">
-                            <div className="stat-card">
-                                <strong>{stat.label}</strong>
-                                <span>{stat.text} <i className="fa-solid fa-arrow-right ms-2"></i></span>
-                            </div>
+                    {displayStats.map((stat, i) => (
+                        <div key={stat.id || i} className="col-6 col-md-3">
+                            <Link href={stat.link || `/facilities#${stat.slug}`} className="text-decoration-none text-white d-block h-100">
+                                <div className="stat-card transition-all">
+                                    <strong title={stat.title}>{stat.title}</strong>
+                                    <span>Read More <i className="fa-solid fa-arrow-right ms-2"></i></span>
+                                </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

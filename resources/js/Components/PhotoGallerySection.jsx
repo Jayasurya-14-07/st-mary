@@ -1,20 +1,17 @@
-export default function PhotoGallerySection({ galleryImages = [] }) {
+import { Link } from '@inertiajs/react';
 
+export default function PhotoGallerySection({ homeGalleries = [], galleryImages = [] }) {
     const defaultGallery = [
-        { title: 'Morning Assembly', image: '/images/gallery/gallery1.jpg', category: 'campus' },
-        { title: 'Cultural Activities', image: '/images/gallery/gallery2.jpg', category: 'events' },
-        { title: 'School Clubs', image: '/images/gallery/gallery3.jpg', category: 'activities' },
-        { title: 'Value Edu Club', image: '/images/gallery/gallery4.jpg', category: 'learning' },
-        { title: 'Paper Show', image: '/images/gallery/gallery5.jpg', category: 'sports' },
-        { title: 'New Academic Year', image: '/images/gallery/gallery6.jpg', category: 'activities' },
+        { title: 'Morning Assembly', cover_url: '/images/gallery/gallery1.jpg', images_count: 12, slug: '#' },
+        { title: 'Cultural Activities', cover_url: '/images/gallery/gallery2.jpg', images_count: 8, slug: '#' },
+        { title: 'School Clubs', cover_url: '/images/gallery/gallery3.jpg', images_count: 15, slug: '#' },
+        { title: 'Value Edu Club', cover_url: '/images/gallery/gallery4.jpg', images_count: 10, slug: '#' },
+        { title: 'Paper Show', cover_url: '/images/gallery/gallery5.jpg', images_count: 6, slug: '#' },
+        { title: 'New Academic Year', cover_url: '/images/gallery/gallery6.jpg', images_count: 20, slug: '#' },
     ];
 
-    const displayGallery = (galleryImages && galleryImages.length > 0)
-        ? galleryImages.map(img => ({
-            title: img.title || 'Gallery Image',
-            image: img.url || img.file_path || '/images/gallery/gallery1.jpg',
-            category: 'campus'
-          }))
+    const displayAlbums = (homeGalleries && homeGalleries.length > 0)
+        ? homeGalleries
         : defaultGallery;
 
     return (
@@ -26,21 +23,35 @@ export default function PhotoGallerySection({ galleryImages = [] }) {
                         <h2 className="section-title mb-0">Moments at School</h2>
                     </div>
                     <div className="col-lg-5 d-flex flex-column align-items-lg-end mt-4 mt-lg-0">
-                        <a href="/gallery" className="btn-gallery-view">View All <i className="fa-solid fa-arrow-right ms-2"></i></a>
+                        <Link href="/gallery" className="btn-gallery-view">
+                            View All <i className="fa-solid fa-arrow-right ms-2"></i>
+                        </Link>
                     </div>
                 </div>
+
                 <div className="row g-4" id="galleryGrid">
-                    {displayGallery.map((item, i) => (
-                        <div key={i} className="col-lg-4 col-md-6 gallery-box reveal" data-category={item.category || 'campus'}>
-                            <div className="gallery-item uniform-card" data-bs-toggle="modal" data-bs-target="#imageModal"
-                                data-image={item.image} data-title={item.title}>
-                                <img src={item.image} alt={item.title} />
-                                <div className="gallery-overlay">
-                                    <div className="fs-5 serif">{item.title}</div>
-                                </div>
+                    {displayAlbums.map((album, i) => {
+                        const albumHref = album.slug && album.slug !== '#' ? `/gallery/folder/${album.slug}` : '/gallery';
+                        return (
+                            <div key={album.id || i} className="col-lg-4 col-md-6 reveal">
+                                <Link href={albumHref} className="text-decoration-none">
+                                    <div className="gallery-item uniform-card position-relative overflow-hidden rounded-4 shadow-sm">
+                                        <img 
+                                            src={album.cover_url || '/images/gallery/gallery1.jpg'} 
+                                            alt={album.title}
+                                            className="w-100 h-100 object-fit-cover"
+                                        />
+                                        <div className="gallery-overlay p-3 d-flex flex-column justify-content-end">
+                                            <div className="badge bg-wine text-white align-self-start mb-2 px-2.5 py-1 rounded-pill small">
+                                                <i className="fa-solid fa-camera me-1"></i> {album.images_count || 0} Photos
+                                            </div>
+                                            <h4 className="fs-5 serif text-white mb-0">{album.title}</h4>
+                                        </div>
+                                    </div>
+                                </Link>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

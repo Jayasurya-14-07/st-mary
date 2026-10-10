@@ -17,5 +17,21 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->respond(function ($response, Throwable $exception, \Illuminate\Http\Request $request) {
+            $status = $response->getStatusCode();
+            if (in_array($status, [404, 500, 503])) {
+                $flashNews = \App\Models\FlashNews::where('status', 1)
+                    ->orderBy('publish_date', 'desc')
+                    ->get();
+
+                return \Inertia\Inertia::render('Error', [
+                    'status'    => $status,
+                    'flashNews' => $flashNews,
+                ])
+                ->toResponse($request)
+                ->setStatusCode($status);
+            }
+
+            return $response;
+        });
     })->create();
