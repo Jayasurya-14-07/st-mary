@@ -30,9 +30,9 @@ export default function Contact({ flashNews = [] }) {
         <AppLayout flashNews={flashNews}>
             <Head title="Contact Us — St. Mary's Convent School" />
 
-            <SubpageHero 
-                title="Get in Touch" 
-                breadcrumbs={[{ name: 'Contact Us', url: '/contact' }]} 
+            <SubpageHero
+                title="Get in Touch"
+                breadcrumbs={[{ name: 'Contact Us', url: '/contact' }]}
             />
 
             {/* Contact Details Cards */}
@@ -125,8 +125,8 @@ export default function Contact({ flashNews = [] }) {
                                             <label className="form-label fw-semibold text-dark small mb-1">
                                                 Full Name <span className="text-danger">*</span>
                                             </label>
-                                            <input 
-                                                type="text" 
+                                            <input
+                                                type="text"
                                                 className={`form-control form-control-lg rounded-3 fs-6 ${errors.name ? 'is-invalid' : ''}`}
                                                 placeholder="Enter full name"
                                                 maxLength={100}
@@ -141,10 +141,10 @@ export default function Contact({ flashNews = [] }) {
                                             <label className="form-label fw-semibold text-dark small mb-1">
                                                 Email Address <span className="text-danger">*</span>
                                             </label>
-                                            <input 
-                                                type="email" 
+                                            <input
+                                                type="email"
                                                 className={`form-control form-control-lg rounded-3 fs-6 ${errors.email ? 'is-invalid' : ''}`}
-                                                placeholder="example@domain.com"
+                                                placeholder="example@gmail.com"
                                                 maxLength={100}
                                                 value={data.email}
                                                 onChange={(e) => setData('email', e.target.value)}
@@ -157,11 +157,11 @@ export default function Contact({ flashNews = [] }) {
                                             <label className="form-label fw-semibold text-dark small mb-1">
                                                 Phone Number
                                             </label>
-                                            <input 
+                                            <input
                                                 type="text"
                                                 inputMode="numeric"
                                                 className={`form-control form-control-lg rounded-3 fs-6 ${errors.phone ? 'is-invalid' : ''}`}
-                                                placeholder="Digits only (e.g. 9876543210)"
+                                                placeholder="Digits Only"
                                                 maxLength={15}
                                                 value={data.phone}
                                                 onChange={(e) => setData('phone', e.target.value.replace(/\D/g, ''))}
@@ -173,8 +173,8 @@ export default function Contact({ flashNews = [] }) {
                                             <label className="form-label fw-semibold text-dark small mb-1">
                                                 Subject
                                             </label>
-                                            <input 
-                                                type="text" 
+                                            <input
+                                                type="text"
                                                 className={`form-control form-control-lg rounded-3 fs-6 ${errors.subject ? 'is-invalid' : ''}`}
                                                 placeholder="Enter subject"
                                                 maxLength={100}
@@ -193,8 +193,8 @@ export default function Contact({ flashNews = [] }) {
                                                     {data.message.length}/500 chars
                                                 </span>
                                             </div>
-                                            <textarea 
-                                                rows="4" 
+                                            <textarea
+                                                rows="4"
                                                 className={`form-control rounded-3 fs-6 ${errors.message ? 'is-invalid' : ''}`}
                                                 placeholder="Write your query or message here (max 500 characters)..."
                                                 maxLength={500}
@@ -206,8 +206,8 @@ export default function Contact({ flashNews = [] }) {
                                         </div>
 
                                         <div className="col-12 mt-4">
-                                            <button 
-                                                type="submit" 
+                                            <button
+                                                type="submit"
                                                 className="btn btn-premium px-5 py-3 rounded-pill fw-bold w-100 d-flex align-items-center justify-content-center"
                                                 disabled={processing}
                                             >
@@ -238,14 +238,14 @@ export default function Contact({ flashNews = [] }) {
                                     </p>
 
                                     <div className="mb-4 rounded-3 overflow-hidden shadow-sm" style={{ height: '320px' }}>
-                                        <iframe 
+                                        <iframe
                                             title="School Location Map"
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13452.146637877235!2d75.45!3d32.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDM5JzAwLjAiTiA3NcKwMjcnMDAuMCJF!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin"
-                                            width="100%" 
-                                            height="100%" 
-                                            style={{ border: 0 }} 
-                                            allowFullScreen="" 
-                                            loading="lazy" 
+                                            width="100%"
+                                            height="100%"
+                                            style={{ border: 0 }}
+                                            allowFullScreen=""
+                                            loading="lazy"
                                             referrerPolicy="no-referrer-when-downgrade"
                                         ></iframe>
                                     </div>

@@ -5,7 +5,10 @@ import { Link } from '@inertiajs/react';
  * Styled according to about.html design system with page-banner & glassmorphism breadcrumbs.
  */
 export default function SubpostHero({ post = null, categoryName = null, title = null }) {
-    // Extract category name(s) matching post.blade.php logic ($post->categories->pluck('name')->join(', '))
+    // 1. Post title for the main banner heading
+    const pageTitle = post?.title || title || 'Post';
+
+    // 2. Extract category name for breadcrumb
     let categoryTitle = categoryName;
 
     if (!categoryTitle && post) {
@@ -16,9 +19,16 @@ export default function SubpostHero({ post = null, categoryName = null, title = 
         }
     }
 
-    const displayTitle = categoryTitle || title || post?.title || 'News & Updates';
-    const lowerTitle = displayTitle.toLowerCase();
-    const showNewsEventsParent = lowerTitle.includes('event') || lowerTitle.includes('news') || lowerTitle.includes('special');
+    const breadcrumbCategory = categoryTitle || 'News & Events';
+    const lowerCategory = breadcrumbCategory.toLowerCase();
+
+    // Determine category URL
+    let categoryUrl = '/news-events';
+    if (lowerCategory.includes('club')) {
+        categoryUrl = '/our-clubs';
+    } else if (lowerCategory.includes('facilit')) {
+        categoryUrl = '/facilities';
+    }
 
     return (
         <section className="page-banner text-center">
@@ -26,7 +36,7 @@ export default function SubpostHero({ post = null, categoryName = null, title = 
             <div className="container position-relative z-2">
                 <div className="row justify-content-center">
                     <div className="col-lg-10">
-                        <h1 className="page-banner-title">{displayTitle}</h1>
+                        <h1 className="page-banner-title">{pageTitle}</h1>
 
                         <div className="breadcrumb-wrapper">
                             <ul className="breadcrumb-custom">
@@ -36,14 +46,8 @@ export default function SubpostHero({ post = null, categoryName = null, title = 
                                     </Link>
                                 </li>
 
-                                {showNewsEventsParent && (
-                                    <li className="breadcrumb-item">
-                                        <Link href="/news-events">News & Events</Link>
-                                    </li>
-                                )}
-
                                 <li className="breadcrumb-item active" aria-current="page">
-                                    {displayTitle}
+                                    <Link href={categoryUrl}>{breadcrumbCategory}</Link>
                                 </li>
                             </ul>
                         </div>

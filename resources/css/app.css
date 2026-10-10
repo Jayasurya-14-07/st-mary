@@ -2117,7 +2117,8 @@ footer h5 {
     opacity: 0.85;
 }
 
-.breadcrumb-custom .breadcrumb-item.active {
+.breadcrumb-custom .breadcrumb-item.active,
+.breadcrumb-custom .breadcrumb-item.active a {
     color: var(--gold-light, #f7d785);
     font-weight: 700;
 }

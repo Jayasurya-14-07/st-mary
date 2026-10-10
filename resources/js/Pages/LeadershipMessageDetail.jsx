@@ -24,8 +24,7 @@ export default function LeadershipMessageDetail({ message = null }) {
             <SubpageHero 
                 title={`${message.position} Message`} 
                 breadcrumbs={[
-                    { name: 'Home', url: '/' },
-                    { name: `${message.position} Message`, url: `/leadership-message/${message.slug}` }
+                    { name: `${message.position} Message` }
                 ]} 
             />
 

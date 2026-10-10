@@ -8,6 +8,12 @@ export default function SubpageHero({ page = null, title = null, breadcrumbs = [
     // Title logic matching page.blade.php ($page->title ?? $title ?? 'About Us')
     const pageTitle = page?.title || title || 'About Us';
 
+    // Filter out duplicate 'Home' entries since Home is already the root breadcrumb
+    const cleanBreadcrumbs = (breadcrumbs || []).filter(crumb => {
+        const name = typeof crumb === 'string' ? crumb : (crumb?.name || crumb?.label);
+        return name && name.trim().toLowerCase() !== 'home';
+    });
+
     return (
         <section className="page-banner text-center">
             <div className="page-banner-pattern"></div>
@@ -23,9 +29,9 @@ export default function SubpageHero({ page = null, title = null, breadcrumbs = [
                                         <i className="fa-solid fa-house me-2"></i>Home
                                     </Link>
                                 </li>
-                                {breadcrumbs && breadcrumbs.length > 0 ? (
-                                    breadcrumbs.map((crumb, index) => {
-                                        const isLast = index === breadcrumbs.length - 1;
+                                {cleanBreadcrumbs && cleanBreadcrumbs.length > 0 ? (
+                                    cleanBreadcrumbs.map((crumb, index) => {
+                                        const isLast = index === cleanBreadcrumbs.length - 1;
                                         const name = typeof crumb === 'string' ? crumb : (crumb.name || crumb.label);
                                         const url = typeof crumb === 'object' ? crumb.url : null;
 
