@@ -46,9 +46,9 @@ export default function Contact({ flashNews = [] }) {
                                 </div>
                                 <h5 className="fw-bold text-navy mb-2">School Location</h5>
                                 <p className="text-muted small mb-0" style={{ lineHeight: '1.6' }}>
-                                    St. Mary’s Convent School<br />
-                                    Vill. Chhallan, Ramkot, Teh. Ramkot,<br />
-                                    Dist. Kathua, J&K (UT) – 184205
+                                    St. Mary’s Convent School, <br />Chhallan, Ramkot<br />
+                                Vill. Chhallan, Ramkot, Tehsil Ramkot, District Kathua,<br />
+                                 Jammu & Kashmir (UT) – 184205, India.
                                 </p>
                             </div>
                         </div>
@@ -73,7 +73,7 @@ export default function Contact({ flashNews = [] }) {
                                 </div>
                                 <h5 className="fw-bold text-navy mb-2">Email Inquiries</h5>
                                 <p className="text-muted small mb-0">
-                                    <a href="mailto:school@smcsramkot.in" className="fw-bold text-navy text-decoration-none fs-6">school@smcsramkot.in</a><br />
+                                    <a href="mailto:principal@smcsramkot.in" className="fw-bold text-navy text-decoration-none fs-6">principal@smcsramkot.in </a><br />
                                     <span className="text-muted">Direct Official Correspondence</span>
                                 </p>
                             </div>

@@ -25,6 +25,11 @@ export default function Post({ post = null, flashNews = [] }) {
         })
         : null;
 
+    // Show date only for posts belonging to the 'news-events' category
+    const isNewsEvents = Array.isArray(post.categories)
+        ? post.categories.some(c => (c.slug || '').toLowerCase() === 'news-events')
+        : false;
+
     return (
         <AppLayout flashNews={flashNews}>
             <Head title={`${post.title || 'Post'} - St. Mary's Convent School`} />
@@ -39,7 +44,7 @@ export default function Post({ post = null, flashNews = [] }) {
                         <div className="col-12">
                             <h2 className="display-6 fw-bold text-navy mb-3">{post.title}</h2>
 
-                            {formattedDate && (
+                            {isNewsEvents && formattedDate && (
                                 <div className="news-meta-item text-muted mb-4 small d-flex align-items-center gap-2">
                                     <i className="fa-regular fa-calendar text-gold"></i>
                                     <span>{formattedDate}</span>

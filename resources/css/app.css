@@ -86,6 +86,48 @@ a {
     z-index: 1000;
 }
 
+#mainNav.navbar {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+@media (min-width: 1400px) {
+    #mainNav.navbar {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    #mainNav.navbar {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+.navbar-logo-img {
+    height: 70px !important;
+    max-height: 70px !important;
+    width: auto !important;
+    object-fit: contain;
+    display: block;
+    transition: height 0.3s ease;
+}
+
+@media (min-width: 1400px) {
+    .navbar-logo-img {
+        height: 74px !important;
+        max-height: 74px !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .navbar-logo-img {
+        height: 52px !important;
+        max-height: 52px !important;
+    }
+}
+
 .navbar.scrolled {
     box-shadow: 0 12px 35px rgba(16, 43, 70, .10)
 }
@@ -136,16 +178,41 @@ a {
     color: var(--muted)
 }
 
+#mainNav .container,
+.notice-bar .container {
+    max-width: 1320px;
+}
+
 .navbar .nav-link {
     color: #314252;
     font-weight: 600;
-    font-size: 15px;
-    padding: 1rem .72rem !important;
+    font-size: 14.5px;
+    padding: 0.85rem 0.55rem !important;
+    white-space: nowrap !important;
+    letter-spacing: -0.01em;
+}
+
+@media (min-width: 1400px) {
+    .navbar .nav-link {
+        font-size: 15px;
+        padding: 0.85rem 0.7rem !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .navbar .nav-link {
+        font-size: 13px;
+        padding: 0.75rem 0.35rem !important;
+    }
+}
+
+.navbar-nav {
+    flex-wrap: nowrap !important;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-    color: var(--wine)
+    color: var(--wine);
 }
 
 .btn-premium {
@@ -153,8 +220,10 @@ a {
     color: #fff;
     border: 1px solid var(--wine);
     border-radius: 999px;
-    padding: 11px 19px;
+    padding: 9px 18px;
+    font-size: 14px;
     font-weight: 700;
+    white-space: nowrap;
     transition: .25s ease;
     box-shadow: 0 10px 25px rgba(141, 38, 56, .20);
 }
@@ -162,7 +231,7 @@ a {
 .btn-premium:hover {
     background: var(--wine-dark);
     color: #fff;
-    transform: translateY(-2px)
+    transform: translateY(-2px);
 }
 
 .btn-outline-premium {
@@ -974,14 +1043,16 @@ footer a:hover {
 }
 
 .notice-wrapper {
-    max-width: 600px;
-    /* Constrains notice width on desktop */
+    flex: 1 1 auto;
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
 .notice-scroll {
+    flex: 1 1 auto;
+    min-width: 0;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -1316,7 +1387,7 @@ footer h5 {
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    margin-bottom: 18px;
+    /*margin-bottom: 18px;*/
     font-size: 0.95rem;
     line-height: 1.7;
 }
@@ -1666,9 +1737,14 @@ footer h5 {
     object-fit: cover;
     border-radius: 50%;
 }
-
+.designation{
+    font-size: 20px;
+}
+.full-message .message-author-name {
+    color:#8d2638 !important;
+}
 .message-author-name {
-    color: #fff;
+    color:#fff;
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 1.45rem;
@@ -2239,4 +2315,48 @@ footer h5 {
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.6;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 30px;
+}
+th p{
+    margin:0 !important;
+}
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: #ffffffd9;
+}
+td, th {
+  border: 1px solid #173d5f;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.tiptap-content h3,
+.facilities h3,
+.history-content h3{
+        color: #173d5f;
+    letter-spacing: -.02em;
+    margin: 15px 0 !important;
+    font-family: Playfair Display, serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+.tiptap-content h4{
+    color: #8d2638;
+    letter-spacing: -.02em;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 15px 0 !important;
 }

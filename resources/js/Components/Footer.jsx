@@ -18,22 +18,22 @@ export default function Footer() {
                     {/* Column 2: Explore Links */}
                     <div className="col-lg-2 col-md-6">
                         <h5>Explore</h5>
-                        <Link href="/#story" className="footer-link">About the School</Link>
-                        <Link href="/#messages" className="footer-link">Our Principals</Link>
-                        <Link href="/#messages" className="footer-link">Our Staff</Link>
-                        <Link href="/#clubs" className="footer-link">Student Life</Link>
-                        <Link href="/facilities" className="footer-link">Academics</Link>
-                        <Link href="/our-clubs" className="footer-link">Activities</Link>
-                        <Link href="/gallery" className="footer-link">Achievements</Link>
+                        <Link href="/about-us" className="footer-link">About the School</Link>
+                        <Link href="leadership-message/sr-joy-maria-dm" className="footer-link">Our Principal</Link>
+                        <Link href="/academics/our-staffs" className="footer-link">Our Staff</Link>
+                        <Link href="/students-corner/students-school-life" className="footer-link">Student Life</Link>
+                        <Link href="/academics/academics" className="footer-link">Academics</Link>
+                        <Link href="/students-corner/activities" className="footer-link">Activities</Link>
+                        <Link href="/students-corner/achievements-awards" className="footer-link">Achievements</Link>
                     </div>
 
                     {/* Column 3: Quick Links */}
                     <div className="col-lg-2 col-md-6">
                         <h5>Quick Links</h5>
-                        <Link href="/#story" className="footer-link">About Us</Link>
-                        <Link href="javascript:void(0);" className="footer-link">Affiliation</Link>
+                        <Link href="/about-us" className="footer-link">About Us</Link>
+                        <Link href="/affiliation" className="footer-link">Affiliation</Link>
                         <Link href="/our-clubs" className="footer-link">Clubs</Link>
-                        <Link href="javascript:void(0);" className="footer-link">Sports</Link>
+                        <Link href="/students-corner/sports" className="footer-link">Sports</Link>
                         <Link href="/facilities" className="footer-link">Facilities</Link>
                         <Link href="/news-events" className="footer-link">News &amp; Events</Link>
                         <Link href="/gallery" className="footer-link">Gallery</Link>
@@ -45,9 +45,9 @@ export default function Footer() {
                         <h5>Address</h5>
                         <div className="footer-contact-row">
                             <i className="fa-solid fa-location-dot"></i>
-                            <div>St. Mary’s Convent School, Chhallan, Ramkot<br />
-                                Vill. Chhallan, Ramkot, Teh. Ramkot,<br />
-                                Dist. Kathua, J&amp;K (UT) – 184205</div>
+                            <div>St. Mary’s Convent School, <br />Chhallan, Ramkot<br />
+                                Vill. Chhallan, Ramkot, Tehsil Ramkot, District Kathua, <br />
+                                Jammu & Kashmir (UT) – 184205, India.</div>
                         </div>
                         <div className="footer-contact-row align-items-center">
                             <i className="fa-solid fa-phone"></i>
@@ -58,16 +58,17 @@ export default function Footer() {
                         <div className="footer-contact-row align-items-center">
                             <i className="fa-solid fa-envelope"></i>
                             <div>
-                                <a href="mailto:school@smcsramkot.in" className="text-white-50 text-decoration-none">school@smcsramkot.in</a>
+                                <a href="mailto:principal@smcsramkot.in " className="text-white-50 text-decoration-none">principal@smcsramkot.in </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Footer Bottom */}
-                <div className="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-3">
-                    <span>© {new Date().getFullYear()} St. Mary’s Convent School, Chhallan, Ramkot. All Rights Reserved.</span>
-                    <span>Powered by <strong className="text-white">Bosco Soft Technologies Pvt Ltd</strong></span>
+                <div className="footer-bottom text-center">
+                    <p className="m-0">
+                        © {new Date().getFullYear()} St. Mary’s Convent School, Chhallan, Ramkot. All Rights Reserved. <span className="text-nowrap">Powered by <a href="https://www.boscosofttech.com/" target="_blank" rel="noreferrer">Bosco Soft Technologies Pvt Ltd</a></span>
+                    </p>
                 </div>
             </div>
         </footer>

@@ -55,16 +55,43 @@ class Common
             return [];
         }
 
-        return $menus->map(function ($menu) {
+        static $dynamicFacilities = null;
+
+        return $menus->map(function ($menu) use (&$dynamicFacilities) {
+            $children = ($menu->allChildren && $menu->allChildren->isNotEmpty())
+                ? self::formatMenusForInertia($menu->allChildren)
+                : [];
+
+            $isFacilities = strtolower(trim($menu->name ?? '')) === 'facilities'
+                || trim((string) ($menu->url ?? ''), '/') === 'facilities';
+
+            if ($isFacilities && empty($children)) {
+                if ($dynamicFacilities === null) {
+                    $dynamicFacilities = \App\Models\Facility::where('status', 1)
+                        ->orderBy('order_by', 'asc')
+                        ->get()
+                        ->map(function ($f) {
+                            return [
+                                'id'           => 'facility-' . $f->id,
+                                'name'         => $f->title,
+                                'is_url'       => true,
+                                'url'          => '/facilities/' . $f->slug,
+                                'target'       => '_self',
+                                'all_children' => [],
+                            ];
+                        })
+                        ->toArray();
+                }
+                $children = $dynamicFacilities;
+            }
+
             return [
                 'id' => $menu->id,
                 'name' => $menu->name,
                 'is_url' => (bool) $menu->is_url,
-                'url' => self::getMenuUrl($menu),
+                'url' => (!empty($children) && $isFacilities) ? '#' : self::getMenuUrl($menu),
                 'target' => ($menu->is_url && $menu->target) ? $menu->target : '_self',
-                'all_children' => ($menu->allChildren && $menu->allChildren->isNotEmpty())
-                    ? self::formatMenusForInertia($menu->allChildren)
-                    : [],
+                'all_children' => $children,
             ];
         })->toArray();
     }

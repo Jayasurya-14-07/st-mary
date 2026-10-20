@@ -33,7 +33,7 @@ export default function LeadershipMessageDetail({ message = null }) {
                     <div className="row justify-content-center">
                         <div className="col-lg-10">
                             {/* Author Header Card */}
-                            <div className="message-card mb-5 border-0 shadow-sm bg-paper p-4 p-md-5 rounded-4">
+                            <div className="message-card full-message mb-5 border-0 shadow-sm bg-paper p-4 p-md-5 rounded-4">
                                 <div className="row g-4 align-items-center">
                                     <div className="col-lg-4 text-center">
                                         <div className="message-photo-wrapper mx-auto">
@@ -44,10 +44,8 @@ export default function LeadershipMessageDetail({ message = null }) {
                                             />
                                         </div>
                                         <h3 className="message-author-name mt-3 mb-1 text-navy">{message.name}</h3>
-                                        <div className="badge bg-wine px-3 py-2 rounded-pill fw-semibold">{message.position}</div>
-                                        {message.subtext && (
-                                            <div className="text-muted small mt-2">{message.subtext}</div>
-                                        )}
+                                        <h4 class="designation">{message.position}</h4>
+                                       
                                     </div>
                                     <div className="col-lg-8">
                                         <div className="message-body">

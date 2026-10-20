@@ -63,8 +63,13 @@ class Menus extends Model
 
     public function getTypeLabelAttribute(): string
     {
-        return self::TYPE_LABELS[$this->attributes['type']]
-            ?? ucfirst(str_replace('_', ' ', $this->attributes['type']));
+        $type = $this->attributes['type'] ?? null;
+        if (!$type) {
+            return '';
+        }
+
+        return self::TYPE_LABELS[$type]
+            ?? ucfirst(str_replace('_', ' ', $type));
     }
 
     public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo

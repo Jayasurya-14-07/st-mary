@@ -127,7 +127,7 @@ class HomeController extends Controller
                     'id'    => $f->id,
                     'title' => $f->title,
                     'slug'  => $f->slug,
-                    'link'  => '/facilities#' . $f->slug,
+                    'link'  => '/facilities/' . $f->slug,
                 ];
             });
 
@@ -536,17 +536,54 @@ class HomeController extends Controller
     public function allfacilities()
     {
         $facilitySettings = \App\Models\FacilitySetting::first();
+
+        $defaultImages = [
+            '/images/facilities/facilities1.jpg',
+            '/images/facilities/facilities2.jpg',
+            '/images/facilities/facilities3.jpg',
+            '/images/facilities/facilities4.jpg',
+        ];
+
+        $extractFirstImage = function ($content) {
+            if (empty($content)) return null;
+            if (is_array($content)) {
+                foreach ($content as $block) {
+                    $html = $block['data']['content'] ?? '';
+                    if (is_string($html) && preg_match('/<img[^>]+src=["\']([^"\']+)["\']/i', $html, $m)) {
+                        return $m[1];
+                    }
+                    if (!empty($block['data']['url'])) {
+                        return str_starts_with($block['data']['url'], 'http') ? $block['data']['url'] : asset('storage/' . $block['data']['url']);
+                    }
+                }
+            } elseif (is_string($content)) {
+                if (preg_match('/<img[^>]+src=["\']([^"\']+)["\']/i', $content, $m)) {
+                    return $m[1];
+                }
+            }
+            return null;
+        };
+
         $facilities = \App\Models\Facility::where('status', 1)
             ->orderBy('order_by', 'asc')
             ->get()
-            ->map(function ($f) {
+            ->values()
+            ->map(function ($f, $index) use ($extractFirstImage, $defaultImages) {
+                $featureImg = !empty($f->feature_image)
+                    ? (str_starts_with($f->feature_image, 'http') || str_starts_with($f->feature_image, '/') ? $f->feature_image : asset('storage/' . $f->feature_image))
+                    : null;
+
+                $contentImg = $extractFirstImage($f->content);
+                $fallbackImg = $defaultImages[$index % count($defaultImages)];
+
+                $displayImage = $featureImg ?: ($contentImg ?: $fallbackImg);
+
                 return [
                     'id'            => $f->id,
                     'title'         => $f->title,
                     'slug'          => $f->slug,
-                    'excerpt'       => $f->excerpt,
-                    'content'       => $f->content,
-                    'feature_image' => !empty($f->feature_image) ? (str_starts_with($f->feature_image, 'http') || str_starts_with($f->feature_image, '/') ? $f->feature_image : asset('storage/' . $f->feature_image)) : null,
+                    'feature_image' => $featureImg,
+                    'display_image' => $displayImage,
                 ];
             });
 
@@ -570,7 +607,30 @@ class HomeController extends Controller
             return redirect('/facilities');
         }
 
-        return redirect('/facilities#' . $slug);
+        $formattedFacility = [
+            'id'            => $facility->id,
+            'title'         => $facility->title,
+            'slug'          => $facility->slug,
+            'excerpt'       => $facility->excerpt,
+            'content'       => $facility->content,
+            'feature_image' => !empty($facility->feature_image) ? (str_starts_with($facility->feature_image, 'http') || str_starts_with($facility->feature_image, '/') ? $facility->feature_image : asset('storage/' . $facility->feature_image)) : null,
+        ];
+
+        $allFacilities = \App\Models\Facility::where('status', 1)
+            ->orderBy('order_by', 'asc')
+            ->get()
+            ->map(function ($f) {
+                return [
+                    'id'    => $f->id,
+                    'title' => $f->title,
+                    'slug'  => $f->slug,
+                ];
+            });
+
+        return Inertia::render('FacilityDetail', [
+            'facility'      => $formattedFacility,
+            'allFacilities' => $allFacilities,
+        ]);
     }
 
     public function newsEvents()

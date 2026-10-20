@@ -950,31 +950,9 @@ footer a:hover {
     white-space: nowrap;
 }
 
-.notice-scroll > span {
+.notice-scroll span {
     display: inline-block;
     animation: marquee 25s linear infinite;
-}
-
-.notice-scroll:hover > span {
-    animation-play-state: paused;
-}
-
-.notice-scroll .notice-item {
-    display: inline;
-    animation: none;
-}
-
-.notice-link {
-    color: #ffffff;
-    text-decoration: none !important;
-    transition: color 0.2s ease;
-}
-
-.notice-link:hover,
-.notice-link:focus,
-.notice-link:active {
-    color: var(--gold-light, #f7d070) !important;
-    text-decoration: none !important;
 }
 
 /* ---------- Updated Navbar & Dropdown ---------- */
@@ -1956,4 +1934,19 @@ footer h5 {
     font-size: 0.88rem;
     line-height: 1.5;
     margin-bottom: 0;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }

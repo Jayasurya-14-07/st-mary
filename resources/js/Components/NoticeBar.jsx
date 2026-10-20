@@ -55,26 +55,28 @@ export default function NoticeBar({ notices = [], flashNews = [] }) {
             {/* Announcement Bar */}
             <div className="notice-bar d-none d-md-block">
                 <div className="container d-flex align-items-center gap-4">
-                    <div className="top-contact-info d-flex gap-3">
+                    <div className="top-contact-info d-flex gap-3 flex-shrink-0">
                         <span>
                             <i className="fa-solid fa-phone me-2"></i>
                             <a href="tel:+918082171498" className="text-white text-decoration-none">+91 8082171498</a>
                         </span>
                         <span>
                             <i className="fa-solid fa-envelope me-2"></i>
-                            <a href="mailto:school@smcsramkot.in" className="text-white text-decoration-none">school@smcsramkot.in</a>
+                            <a href="mailto:principal@smcsramkot.in" className="text-white text-decoration-none">principal@smcsramkot.in</a>
                         </span>
                     </div>
-                    <div className="notice-wrapper flex-grow-1 d-flex align-items-center">
-                        <span className="notice-label"><i className="fa-solid fa-bell me-1"></i> Notices</span>
-                        <div className="notice-scroll w-100 ms-3">
+                    <div className="notice-wrapper flex-grow-1 d-flex align-items-center mx-3 overflow-hidden">
+                        <span className="notice-label flex-shrink-0"><i className="fa-solid fa-bell me-1"></i> Notices</span>
+                        <div className="notice-scroll flex-grow-1 ms-3 overflow-hidden">
                             <span>
                                 {renderNoticeItems()}
                             </span>
                         </div>
                     </div>
-                    <div className="notice-wrapper flex-grow-1 d-flex align-items-end">
-                        <a href="#"><span className="notice-label"><i className="fa-solid fa-user me-1"></i> Parent Portal</span></a>
+                    <div className="ms-auto flex-shrink-0 d-flex align-items-center">
+                        <a href="#" className="text-decoration-none">
+                            <span className="notice-label"><i className="fa-solid fa-user me-1"></i> Parent Portal</span>
+                        </a>
                     </div>
                 </div>
             </div>

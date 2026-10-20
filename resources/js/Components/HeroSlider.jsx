@@ -30,10 +30,10 @@ export default function HeroSlider({ sliders = null, sliderImages = [], belowSli
     const totalSlides = imagesList.length;
 
     const defaultStats = [
-        { title: 'Smart Board Classrooms', slug: 'smart-board-classrooms', link: '/facilities#smart-board-classrooms' },
-        { title: 'Computer Lab', slug: 'computer-lab', link: '/facilities#computer-lab' },
-        { title: 'Science Laboratory', slug: 'science-laboratory', link: '/facilities#science-laboratory' },
-        { title: 'Playground', slug: 'playground', link: '/facilities#playground' },
+        { title: 'Smart Board Classrooms', slug: 'smart-board-classrooms', link: '/facilities/smart-board-classrooms' },
+        { title: 'Computer Lab', slug: 'computer-lab', link: '/facilities/computer-lab' },
+        { title: 'Science Laboratory', slug: 'science-laboratory', link: '/facilities/science-laboratory' },
+        { title: 'Playground', slug: 'playground', link: '/facilities/playground' },
     ];
 
     const displayStats = (belowSliderFacilities && belowSliderFacilities.length > 0)
@@ -122,15 +122,15 @@ export default function HeroSlider({ sliders = null, sliderImages = [], belowSli
                             A joyful place to learn, grow and serve — nurturing young minds through knowledge, character, faith and enduring values.
                         </p>
                         <div className="hero-actions">
-                            <a className="btn btn-light-premium" href="#story">Explore Our School <i className="fa-solid fa-arrow-down ms-2"></i></a>
-                            <a className="btn btn-ghost" href="javascript:void(0);">Admission Enquiry <i className="fa-solid fa-arrow-right ms-2"></i></a>
+                            <a className="btn btn-light-premium" href="/about-us">Explore Our School <i className="fa-solid fa-arrow-down ms-2"></i></a>
+                            <a className="btn btn-ghost" href="/admission">Admission Enquiry <i className="fa-solid fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
                 <div className="row g-2 mt-5 hero-stats">
                     {displayStats.map((stat, i) => (
                         <div key={stat.id || i} className="col-6 col-md-3">
-                            <Link href={stat.link || `/facilities#${stat.slug}`} className="text-decoration-none text-white d-block h-100">
+                            <Link href={stat.link || `/facilities/${stat.slug}`} className="text-decoration-none text-white d-block h-100">
                                 <div className="stat-card transition-all">
                                     <strong title={stat.title}>{stat.title}</strong>
                                     <span>Read More <i className="fa-solid fa-arrow-right ms-2"></i></span>

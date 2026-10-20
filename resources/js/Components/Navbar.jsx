@@ -74,15 +74,39 @@ export default function Navbar() {
         return false;
     };
 
+    const isInternalUrl = (url, target) => {
+        if (!url || url === '#' || url.startsWith('javascript:')) return false;
+        if (target && target !== '_self') return false;
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            try {
+                return new URL(url).origin === window.location.origin;
+            } catch (e) {
+                return false;
+            }
+        }
+        return url.startsWith('/');
+    };
+
+    const getInternalPath = (url) => {
+        if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+            try {
+                return new URL(url).pathname;
+            } catch (e) {
+                return url;
+            }
+        }
+        return url;
+    };
+
     const isHomeActive = currentUrl === '/' || currentUrl === '' || currentUrl.startsWith('/#');
 
     return (
         <>
             {/* Desktop & Main Header Navigation */}
             <nav className="navbar navbar-expand-lg sticky-top bg-white" id="mainNav" ref={navRef} style={{ zIndex: 1040 }}>
-                <div className="container d-flex justify-content-between align-items-center">
-                    <Link className="navbar-brand py-0" href="/">
-                        <img src="/images/logo.png" alt="St. Mary's Convent School, Chhallan, Ramkot" style={{ height: '100px', objectFit: 'contain' }} />
+                <div className="container d-flex align-items-center justify-content-between justify-content-lg-start">
+                    <Link className="navbar-brand py-0 me-0 flex-shrink-0" href="/">
+                        <img src="/images/logo.png" alt="St. Mary's Convent School, Chhallan, Ramkot" className="navbar-logo-img" />
                     </Link>
                     <button
                         className="navbar-toggler border-0 shadow-none d-lg-none"
@@ -94,8 +118,8 @@ export default function Navbar() {
                         <i className="fa-solid fa-bars fs-1" style={{ color: 'var(--navy)' }}></i>
                     </button>
 
-                    <div className="collapse navbar-collapse d-none d-lg-flex" id="siteNav">
-                        <ul className="navbar-nav ms-auto align-items-center">
+                    <div className="collapse navbar-collapse d-none d-lg-flex align-items-center flex-grow-1" id="siteNav">
+                        <ul className="navbar-nav align-items-center ms-lg-3 ms-xl-4 flex-grow-1 justify-content-between mb-0">
                             {/* Static Home Menu */}
                             <li className="nav-item">
                                 <Link className={`nav-link ${isHomeActive ? 'active' : ''}`} href="/">
@@ -140,13 +164,22 @@ export default function Navbar() {
                                                                     <ul className="dropdown-menu">
                                                                         {child.all_children.map((subChild) => (
                                                                             <li key={subChild.id}>
-                                                                                <a
-                                                                                    className={`dropdown-item ${isPathActive(subChild.url) ? 'active' : ''}`}
-                                                                                    href={subChild.url || '#'}
-                                                                                    target={subChild.target || '_self'}
-                                                                                >
-                                                                                    {subChild.name}
-                                                                                </a>
+                                                                                {isInternalUrl(subChild.url, subChild.target) ? (
+                                                                                    <Link
+                                                                                        className={`dropdown-item ${isPathActive(subChild.url) ? 'active' : ''}`}
+                                                                                        href={getInternalPath(subChild.url)}
+                                                                                    >
+                                                                                        {subChild.name}
+                                                                                    </Link>
+                                                                                ) : (
+                                                                                    <a
+                                                                                        className={`dropdown-item ${isPathActive(subChild.url) ? 'active' : ''}`}
+                                                                                        href={subChild.url || '#'}
+                                                                                        target={subChild.target || '_self'}
+                                                                                    >
+                                                                                        {subChild.name}
+                                                                                    </a>
+                                                                                )}
                                                                             </li>
                                                                         ))}
                                                                     </ul>
@@ -156,13 +189,22 @@ export default function Navbar() {
 
                                                         return (
                                                             <li key={child.id}>
-                                                                <a
-                                                                    className={`dropdown-item ${childActive}`}
-                                                                    href={child.url || '#'}
-                                                                    target={child.target || '_self'}
-                                                                >
-                                                                    {child.name}
-                                                                </a>
+                                                                {isInternalUrl(child.url, child.target) ? (
+                                                                    <Link
+                                                                        className={`dropdown-item ${childActive}`}
+                                                                        href={getInternalPath(child.url)}
+                                                                    >
+                                                                        {child.name}
+                                                                    </Link>
+                                                                ) : (
+                                                                    <a
+                                                                        className={`dropdown-item ${childActive}`}
+                                                                        href={child.url || '#'}
+                                                                        target={child.target || '_self'}
+                                                                    >
+                                                                        {child.name}
+                                                                    </a>
+                                                                )}
                                                             </li>
                                                         );
                                                     })}
@@ -210,10 +252,10 @@ export default function Navbar() {
                                 </>
                             )}
 
-                            {/* Static Contact Button */}
-                            <li className="nav-item ms-3 me-3">
-                                <Link className={`btn btn-premium ${currentUrl.includes('contact') ? 'active' : ''}`} href="/contact">
-                                    Contact
+                            {/* Static Admission Button */}
+                            <li className="nav-item flex-shrink-0">
+                                <Link className={`btn btn-premium text-nowrap ${currentUrl.includes('admission') ? 'active' : ''}`} href="/admission">
+                                    Admission
                                 </Link>
                             </li>
                         </ul>
@@ -230,12 +272,12 @@ export default function Navbar() {
                 </div>
                 <div className="offcanvas-body px-4 py-4">
                     <div className="d-lg-none mb-4 pb-4 border-bottom">
-                        <Link className="btn btn-premium w-100 py-3 d-flex justify-content-center" href="/contact" onClick={closeMobileOffcanvas}>Admission Enquiry</Link>
+                        <Link className="btn btn-premium w-100 py-3 d-flex justify-content-center" href="/admission" onClick={closeMobileOffcanvas}>Admission Enquiry</Link>
                     </div>
-                    <h6 className="text-uppercase text-muted fw-bold mb-3" style={{ letterSpacing: '0.1em', fontSize: '0.75rem' }}>Main Navigation</h6>
+
                     <ul className="navbar-nav flex-column mb-4 gap-2">
                         <li className="nav-item">
-                            <Link className="nav-link fw-bold text-dark fs-5" href="/" onClick={closeMobileOffcanvas}>
+                            <Link className="nav-link text-dark" href="/" onClick={closeMobileOffcanvas}>
                                 Home
                             </Link>
                         </li>
@@ -249,7 +291,7 @@ export default function Navbar() {
                                     return (
                                         <li key={menu.id} className="nav-item">
                                             <a
-                                                className="nav-link fw-bold text-dark fs-5 d-flex justify-content-between align-items-center"
+                                                className="nav-link text-dark d-flex justify-content-between align-items-center"
                                                 data-bs-toggle="collapse"
                                                 href={`#${dropdownId}`}
                                                 role="button"
@@ -279,14 +321,24 @@ export default function Navbar() {
                                                                         <ul className="nav flex-column gap-1 border-start ps-2">
                                                                             {child.all_children.map((subChild) => (
                                                                                 <li key={subChild.id} className="nav-item">
-                                                                                    <a
-                                                                                        className="nav-link text-muted py-1 small"
-                                                                                        href={subChild.url || '#'}
-                                                                                        target={subChild.target || '_self'}
-                                                                                        onClick={closeMobileOffcanvas}
-                                                                                    >
-                                                                                        {subChild.name}
-                                                                                    </a>
+                                                                                    {isInternalUrl(subChild.url, subChild.target) ? (
+                                                                                        <Link
+                                                                                            className="nav-link text-muted py-1 small"
+                                                                                            href={getInternalPath(subChild.url)}
+                                                                                            onClick={closeMobileOffcanvas}
+                                                                                        >
+                                                                                            {subChild.name}
+                                                                                        </Link>
+                                                                                    ) : (
+                                                                                        <a
+                                                                                            className="nav-link text-muted py-1 small"
+                                                                                            href={subChild.url || '#'}
+                                                                                            target={subChild.target || '_self'}
+                                                                                            onClick={closeMobileOffcanvas}
+                                                                                        >
+                                                                                            {subChild.name}
+                                                                                        </a>
+                                                                                    )}
                                                                                 </li>
                                                                             ))}
                                                                         </ul>
@@ -297,14 +349,24 @@ export default function Navbar() {
 
                                                         return (
                                                             <li key={child.id} className="nav-item">
-                                                                <a
-                                                                    className="nav-link text-muted py-1"
-                                                                    href={child.url || '#'}
-                                                                    target={child.target || '_self'}
-                                                                    onClick={closeMobileOffcanvas}
-                                                                >
-                                                                    {child.name}
-                                                                </a>
+                                                                {isInternalUrl(child.url, child.target) ? (
+                                                                    <Link
+                                                                        className="nav-link text-muted py-1"
+                                                                        href={getInternalPath(child.url)}
+                                                                        onClick={closeMobileOffcanvas}
+                                                                    >
+                                                                        {child.name}
+                                                                    </Link>
+                                                                ) : (
+                                                                    <a
+                                                                        className="nav-link text-muted py-1"
+                                                                        href={child.url || '#'}
+                                                                        target={child.target || '_self'}
+                                                                        onClick={closeMobileOffcanvas}
+                                                                    >
+                                                                        {child.name}
+                                                                    </a>
+                                                                )}
                                                             </li>
                                                         );
                                                     })}
@@ -316,14 +378,24 @@ export default function Navbar() {
 
                                 return (
                                     <li key={menu.id} className="nav-item">
-                                        <a
-                                            className="nav-link fw-bold text-dark fs-5"
-                                            href={menu.url || '#'}
-                                            target={menu.target || '_self'}
-                                            onClick={closeMobileOffcanvas}
-                                        >
-                                            {menu.name}
-                                        </a>
+                                        {isInternalUrl(menu.url, menu.target) ? (
+                                            <Link
+                                                className="nav-link text-dark"
+                                                href={getInternalPath(menu.url)}
+                                                onClick={closeMobileOffcanvas}
+                                            >
+                                                {menu.name}
+                                            </Link>
+                                        ) : (
+                                            <a
+                                                className="nav-link text-dark"
+                                                href={menu.url || '#'}
+                                                target={menu.target || '_self'}
+                                                onClick={closeMobileOffcanvas}
+                                            >
+                                                {menu.name}
+                                            </a>
+                                        )}
                                     </li>
                                 );
                             })
@@ -331,7 +403,7 @@ export default function Navbar() {
                             /* Fallback Mobile Items */
                             <>
                                 <li className="nav-item">
-                                    <a className="nav-link fw-bold text-dark fs-5 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#mobileAboutDropdown" role="button">
+                                    <a className="nav-link text-dark d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#mobileAboutDropdown" role="button">
                                         About Us <i className="fa-solid fa-chevron-down fs-6"></i>
                                     </a>
                                     <div className="collapse ps-3 mt-1" id="mobileAboutDropdown">
@@ -346,18 +418,12 @@ export default function Navbar() {
                                 <li className="nav-item"><a className="nav-link fw-bold text-dark fs-5" href="#clubs" onClick={closeMobileOffcanvas}>Clubs</a></li>
                                 <li className="nav-item"><a className="nav-link fw-bold text-dark fs-5" href="#news" onClick={closeMobileOffcanvas}>News &amp; Events</a></li>
                                 <li className="nav-item">
-                                    <Link className="nav-link fw-bold text-dark fs-5" href="/gallery" onClick={closeMobileOffcanvas}>
+                                    <Link className="nav-link text-dark" href="/gallery" onClick={closeMobileOffcanvas}>
                                         Gallery
                                     </Link>
                                 </li>
                             </>
                         )}
-
-                        <li className="nav-item">
-                            <Link className="nav-link fw-bold text-dark fs-5" href="/contact" onClick={closeMobileOffcanvas}>
-                                Contact
-                            </Link>
-                        </li>
                     </ul>
                 </div>
             </div>
